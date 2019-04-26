@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, NavLink, Switch, Redirect} from 'react-r
 import Homepage from './components/Homepage'
 import GameContainer from './components/GameContainer'
 import CharacterContainer from './components/CharacterContainer'
+import CharacterForm from './components/CharacterForm'
 import Profile from './components/Profile';
 import Logout from './components/Logout'
 import NoMatch from './components/NoMatch'
@@ -13,31 +14,33 @@ import './App.css';
 
 
 class App extends Component {
+  state = {
+    userExists: true
+  }
 
   render(){
   return (
     <Router>
       <>
-        {localStorage.getItem("token") ?
+        {this.state.userExists ?
         <div className="loggedIn">
-        <img src={miniLogo} alt="logooo" className="minilogo"></img>
-          <ul className='navBar'>
-            <li className='navItem'><NavLink to="/home">Home</NavLink></li>
-            <li className='navItem'><NavLink to='/games'>Games</NavLink></li>
-            <li className='navItem'><NavLink to='characters'>Characters</NavLink></li>
-            <li className='navItem'><NavLink to='profile'>Profile</NavLink></li>
-            <li className='navItem'><NavLink to='/logout'>Logout</NavLink></li>
-            <Switch>
-              <Route exact path='/home' component={Homepage}/>
-              <Route exact path='/games' component={GameContainer}/>
-              <Route exact path='/characters'component={CharacterContainer}/>
-              <Route exact path='/profile'component={Profile}/> 
-              <Route exact path='/logout' component={Logout}/>
-              <Route path="/login" render={()=> (<Redirect to='/home'/>)}/>
-              <Route exact path="/" render={()=> (<Redirect to='/home'/>)}/>
-              <Route component={NoMatch}/>
-            </Switch>
-          </ul>
+          <img src={miniLogo} alt="logooo" className="minilogo"></img>
+          <NavLink to="/home" className='navItem'>Home</NavLink>
+          <NavLink to='/games' className='navItem'>Games</NavLink>
+          <NavLink to='characters' className='navItem'>Characters</NavLink>
+          <NavLink to='profile' className='navItem'>Profile</NavLink>
+          <NavLink to='/logout' className='navItem'>Logout</NavLink>
+          <Switch>
+            <Route exact path='/home' component={Homepage}/>
+            <Route exact path='/games' component={GameContainer}/>
+            <Route exact path='/characters'component={CharacterContainer}/>
+            <Route exact path='/profile'component={Profile}/> 
+            <Route exact path='/logout' component={Logout}/>
+            <Route exact path='/new-character' component={CharacterForm}/>
+            <Route path="/login" render={()=> (<Redirect to='/home'/>)}/>
+            <Route exact path="/" render={()=> (<Redirect to='/home'/>)}/>
+            <Route component={NoMatch}/>
+          </Switch>
         </div>
         :
         <div className="App">

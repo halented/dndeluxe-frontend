@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
+import {NavLink} from 'react-router-dom';
 
 class CharacterContainer extends Component {
     state = {
         characters: []
     }
-    componentDidMount(){
-        console.log("check the local storage", localStorage.getItem('userInfo'))
-        debugger;
-        fetch("http://localhost:3000/users/${}characters")
-        .then(response=>response.json())
-        .then(console.log)
-    }
+
     render() {
         return (
-            <div className='charaContainer'>
-                iterate over characters list
-            </div>
+            <>
+                <div className='pageBoxes'>
+                    iterate over characters list
+                </div>
+                    <NavLink to='/new-character'><button id='newCharBtn'>Make a new Character! =></button>
+                    </NavLink>
+            </>
         );
     }
 }

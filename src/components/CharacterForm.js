@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import sword from '../single.png'
+import logo from '../logo.png'
 
 class CharacterForm extends Component {
     state = {
@@ -23,9 +23,13 @@ class CharacterForm extends Component {
         })
     }
 
+    postChar = () => {
+        fetch()
+    }
+
     render() {
         return (
-            <form className='characterForm'>
+            <form className='characterForm' onSubmit={this.postChar}>
                 <br/>
                 <input placeholder='Character Name' id='nameField' name="name"></input>
                 <input name="level" type="number" placeholder='Lvl' className='formBox lvl' max='20' min='1'></input>
@@ -61,14 +65,15 @@ class CharacterForm extends Component {
                     <option>Lawful Evil</option>
                 </select>
                 </div>
-                <div className='sword'>
-                <img src={sword} alt='swordd'></img>
-                </div>
+                <button type='submit' id='subBtn'>Add Character!</button>
                 <div className='singlets'>
                     <input type='number' min='-5' max='20' name='initiative' className='formBox' placeholder='Init'></input>
                     <input type='number' min='-5' max='20' name='armorClass' className='formBox' placeholder='AC'></input>
                     <input type='number' min='-5' max='20' name='speed' className='formBox' placeholder='Spd'></input>
                     <input type='number' min='-5' max='100' name='hitPoints' className='formBox' placeholder='HP'></input>
+                </div>
+                <div className='sword'>
+                <img src={logo} alt='lego'></img>
                 </div>
                 <ul className='statblock'>
                     <li className="statItem">
