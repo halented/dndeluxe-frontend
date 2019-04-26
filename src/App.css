@@ -17,6 +17,7 @@
   height: 100vh;
   grid-template: repeat(10, 10%)/ repeat(10, 10%);
 }
+
 .loginputs{
   border: 2px solid rgb(113, 70, 24);
   border-radius: 4px;
@@ -34,6 +35,8 @@
   font-weight: bolder;
   text-align: center;
   color: cornsilk;
+  max-height: 100%;
+  max-width: 100%;
 }
 
 h1 {
@@ -221,7 +224,7 @@ ul {
   grid-row: 1;
   grid-column: 2/11;
   display: grid;
-  grid-template: 100% / repeat(4, 25%)
+  grid-template: 100% / repeat(5, 20%)
 }
 .navItem {
   display: inline;
@@ -238,3 +241,8 @@ ul {
 .navItem:hover {
   background-color: rgb(65, 60, 57);
 }
+.charaContainer {
+  display: grid;
+  grid-template: repeat(5, 20%) / repeat(5, 20%) 
+}
+
