@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import sword from '../single.png'
 
 class CharacterForm extends Component {
     state = {
@@ -27,21 +28,26 @@ class CharacterForm extends Component {
             <form className='characterForm'>
                 <br/>
                 <input placeholder='Character Name' id='nameField' name="name"></input>
-                <input name="level" type="number" placeholder='Lvl' className='formBox' max='20' min='1'></input>
-                <label className='lbl'>Inspiration: </label>
+                <input name="level" type="number" placeholder='Lvl' className='formBox lvl' max='20' min='1'></input>
+                <label className='lbl insp'>Inspired? </label>
                 <input id="inspiration" type='checkbox' name='inspiration' value='inspiration'></input>
-                Race:
-                <select name='race'>
-                    {this.state.races.map(race=> {
-                        return <option key={race.name}>{race.name}</option>
+                <div className='race'>
+                    Race:
+                    <select name='race'>
+                        {this.state.races.map(race=> {
+                            return <option key={race.name}>{race.name}</option>
+                        })}
+                    </select>
+                </div>
+                <div className='classBox'>
+                    Class:
+                    <select name='class'>
+                    {this.state.classes.map(c=> {
+                        return <option key={c.name}>{c.name}</option>
                     })}
-                </select>
-                Class:
-                <select name='class'>
-                   {this.state.classes.map(c=> {
-                       return <option key={c.name}>{c.name}</option>
-                   })}
-                </select>
+                    </select>
+                </div>
+                <div className='alig'>
                 Alignment:
                 <select name='alignment'>
                     <option>Chaotic Good</option>
@@ -54,11 +60,17 @@ class CharacterForm extends Component {
                     <option>Neutral Evil</option>
                     <option>Lawful Evil</option>
                 </select>
-                <input type='number' min='-5' max='20' name='initiative' className='formBox' placeholder='Init'></input>
-                <input type='number' min='-5' max='20' name='armorClass' className='formBox' placeholder='AC'></input>
-                <input type='number' min='-5' max='20' name='speed' className='formBox' placeholder='Spd'></input>
-                <input type='number' min='-5' max='100' name='hitPoints' className='formBox' placeholder='HP'></input>
-                <ul>
+                </div>
+                <div className='sword'>
+                <img src={sword} alt='swordd'></img>
+                </div>
+                <div className='singlets'>
+                    <input type='number' min='-5' max='20' name='initiative' className='formBox' placeholder='Init'></input>
+                    <input type='number' min='-5' max='20' name='armorClass' className='formBox' placeholder='AC'></input>
+                    <input type='number' min='-5' max='20' name='speed' className='formBox' placeholder='Spd'></input>
+                    <input type='number' min='-5' max='100' name='hitPoints' className='formBox' placeholder='HP'></input>
+                </div>
+                <ul className='statblock'>
                     <li>
                     <input type='number' min='-5' className='statBox'max='20' name='strength'></input><label className='lbl'>  Strength</label></li>
                     <li>

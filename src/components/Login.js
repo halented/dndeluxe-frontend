@@ -3,13 +3,10 @@ import React, { Component } from 'react';
 // import logo from '../logo.png'
 
 class Login extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
+        state = {
             username: '',
             password: ''
         }
-    }
     
 
     onSubmit= (ev)=> {
