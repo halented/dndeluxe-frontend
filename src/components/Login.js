@@ -28,16 +28,36 @@ class Login extends Component {
         })
         })
         .then(r => r.json())
-        .then(json=>{
-            localStorage.setItem("token", json.jwt)
-        })
+        .then(json=> localStorage.setItem('userInfo', json))
     }
 
     onChange = (ev) => {
         this.setState({[ev.target.name]: ev.target.value})
     }
+
     showForm = () => {
         this.setState({showSignUp: true})
+    }
+
+    login = (ev) => {
+        ev.preventDefault()
+        fetch("http://localhost:3000/login", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json'
+        },
+        body: JSON.stringify({user: {username: this.state.username, password: this.state.password}})
+    })
+        .then(response=>response.json())
+        .then(
+            json=>{
+                localStorage.setItem('token', json.jwt)
+            }
+            // let items = []
+            // items.push({'user_id': json.id})
+            // items.push({'token': json.jwt})
+        )
     }
 
     render() {
@@ -53,9 +73,22 @@ class Login extends Component {
                     </form>
                 :
                     <div>Enter a username and password to login:
-                        <p><input placeholder='username' name='username' className='loginputs' value={this.state.username} onChange={this.onChange}></input></p>
-                        <p><input placeholder='password' name='password' className='loginputs' type='password' value={this.state.password} onChange={this.onChange}></input></p>
-                        <button>submit</button>
+                        <form onSubmit={this.login}>
+                            <p><input placeholder='username' 
+                                    name='username' 
+                                    className='loginputs' 
+                                    value={this.state.username} 
+                                    onChange={this.onChange}>
+                                    </input></p>
+                            <p><input placeholder='password' 
+                                    name='password' 
+                                    className='loginputs' 
+                                    type='password' 
+                                    value={this.state.password} 
+                                    onChange={this.onChange}>
+                                    </input></p>
+                            <button>submit</button>
+                        </form>
                         <p>Or<button onClick={this.showForm}>click here</button> to signup!</p>
                     </div>
                 }

@@ -5,7 +5,9 @@ class CharacterContainer extends Component {
         characters: []
     }
     componentDidMount(){
-        fetch("http://localhost:3000/characters")
+        console.log("check the local storage", localStorage.getItem('userInfo'))
+        debugger;
+        fetch("http://localhost:3000/users/${}characters")
         .then(response=>response.json())
         .then(console.log)
     }
