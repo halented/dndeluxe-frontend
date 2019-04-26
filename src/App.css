@@ -36,6 +36,11 @@
   color: cornsilk;
 }
 
+h1 {
+text-align: center;
+color: white
+}
+
 button {
   border-radius: 5px;
   background-color: rgb(69, 55, 43);
@@ -68,6 +73,8 @@ input:focus, textarea:focus  {
 .homepage {
   grid-row: 2/10;
   grid-column: 2/10;
+  display: grid;
+  grid-template: repeat(5, 20%)/ repeat(5, 20%)
 }
 
 .avatar {
@@ -191,12 +198,12 @@ ul {
   padding-left: 0;
 }
 
-li {
+.statItem {
   padding-left: 1em;
   text-indent: -1em;
 }
 
-li:before {
+.statItem:before {
   content: "+";
   padding-right: 5px;
 }
@@ -209,4 +216,25 @@ li:before {
   border: 2px solid rgb(113, 70, 24);
   border-radius: 5px;
   align-self: center
+}
+.navBar {
+  grid-row: 1;
+  grid-column: 2/11;
+  display: grid;
+  grid-template: 100% / repeat(4, 25%)
+}
+.navItem {
+  display: inline;
+  justify-self: center;
+  align-self: center;
+  padding: 5px;
+  border: 2px solid rgb(14, 13, 12);
+  border-radius: 5px;
+  background-color: rgb(45, 42, 40);
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  opacity: .9
+}
+.navItem:hover {
+  background-color: rgb(65, 60, 57);
 }

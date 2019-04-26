@@ -71,17 +71,17 @@ class CharacterForm extends Component {
                     <input type='number' min='-5' max='100' name='hitPoints' className='formBox' placeholder='HP'></input>
                 </div>
                 <ul className='statblock'>
-                    <li>
+                    <li className="statItem">
                     <input type='number' min='-5' className='statBox'max='20' name='strength'></input><label className='lbl'>  Strength</label></li>
-                    <li>
+                    <li className="statItem">
                     <input type='number' min='-5' className='statBox'max='20' name='dexterity'></input><label className='lbl'>  Dexterity</label></li>
-                    <li>
+                    <li className="statItem">
                     <input type='number' min='-5' className='statBox'max='20' name='constitution'></input><label className='lbl'>  Constitution</label></li>
-                    <li>
+                    <li className="statItem">
                     <input type='number' min='-5' className='statBox'max='20' name='intelligence'></input><label className='lbl'>  Intelligence</label></li>
-                    <li>
+                    <li className="statItem">
                     <input type='number' min='-5' className='statBox'max='20' name='wisdom'></input><label className='lbl'>  Wisdom</label></li>
-                    <li>
+                    <li className="statItem">
                     <input type='number' min='-5' className='statBox'max='20' name='charisma'></input><label className='lbl'>  Charisma</label></li>
                 </ul>
                 <textarea type='textarea' name='description' id='description' placeholder='Additional character details (personality traits, ideals, bonds, notes, items...)'></textarea>
