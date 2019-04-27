@@ -14,15 +14,15 @@ import './App.css';
 
 
 class App extends Component {
-  state = {
-    userExists: true
-  }
+  // state = {
+  //   userExists: false
+  // }
 
   render(){
   return (
     <Router>
       <>
-        {this.state.userExists ?
+        {localStorage.getItem('token') ?
         <div className="loggedIn">
           <img src={miniLogo} alt="logooo" className="minilogo"></img>
           <NavLink to="/home" className='navItem'>Home</NavLink>

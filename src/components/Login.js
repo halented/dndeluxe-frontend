@@ -54,9 +54,6 @@ class Login extends Component {
             json=>{
                 localStorage.setItem('token', json.jwt)
             }
-            // let items = []
-            // items.push({'user_id': json.id})
-            // items.push({'token': json.jwt})
         )
     }
 

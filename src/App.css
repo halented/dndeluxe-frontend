@@ -183,7 +183,7 @@ input:focus, textarea:focus  {
   border-radius: 4px;
 }
 .statblock {
-  grid-row: 6/8;
+  grid-row: 4;
   grid-column: 2;
   align-items: center
 }

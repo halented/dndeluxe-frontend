@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from '../logo.png'
+// import logo from '../logo.png'
 
 class CharacterForm extends Component {
     state = {
@@ -23,8 +23,42 @@ class CharacterForm extends Component {
         })
     }
 
-    postChar = () => {
-        fetch()
+    postChar = (ev) => {
+        ev.preventDefault()
+        let charData = this.parseDetails()
+        let postData = {character: charData}
+        fetch(`http://localhost:3000/users/1/new-character`, {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify(postData)
+        })
+        .then(response=>response.json())
+        .then(console.log)
+    }
+
+    parseDetails= () => {
+        let data = {}
+        data['name'] = document.getElementsByName('name')[0].value
+        data['race'] = document.getElementsByName('race')[0].value
+        data['alignment'] = document.getElementsByName('alignment')[0].value
+        data['image'] = document.getElementsByName('image')[0].value
+        data['details'] = document.getElementsByName('details')[0].value
+        data['level'] = document.getElementsByName('level')[0].value
+        data['class'] = document.getElementsByName('class')[0].value
+        data['strength'] = document.getElementsByName('strength')[0].value
+        data['dexterity'] = document.getElementsByName('dexterity')[0].value
+        data['constitution'] = document.getElementsByName('constitution')[0].value
+        data['intelligence'] = document.getElementsByName('intelligence')[0].value
+        data['wisdom'] = document.getElementsByName('wisdom')[0].value
+        data['charisma'] = document.getElementsByName('charisma')[0].value
+        data['initiative'] = document.getElementsByName('initiative')[0].value
+        data['armor_class'] = document.getElementsByName('armorClass')[0].value
+        data['speed'] = document.getElementsByName('speed')[0].value
+        data['hit_points'] = document.getElementsByName('hitPoints')[0].value
+        data['inspiration'] = document.getElementsByName('inspiration')[0].checked
+        return data
     }
 
     render() {
@@ -69,11 +103,11 @@ class CharacterForm extends Component {
                 <div className='singlets'>
                     <input type='number' min='-5' max='20' name='initiative' className='formBox' placeholder='Init'></input>
                     <input type='number' min='-5' max='20' name='armorClass' className='formBox' placeholder='AC'></input>
-                    <input type='number' min='-5' max='20' name='speed' className='formBox' placeholder='Spd'></input>
+                    <input type='number' min='0' max='100' name='speed' className='formBox' placeholder='Spd'></input>
                     <input type='number' min='-5' max='100' name='hitPoints' className='formBox' placeholder='HP'></input>
                 </div>
                 <div className='sword'>
-                <img src={logo} alt='lego'></img>
+                {/* <img src={logo} alt='lego'></img> */}
                 </div>
                 <ul className='statblock'>
                     <li className="statItem">
@@ -89,7 +123,7 @@ class CharacterForm extends Component {
                     <li className="statItem">
                     <input type='number' min='-5' className='statBox'max='20' name='charisma'></input><label className='lbl'>  Charisma</label></li>
                 </ul>
-                <textarea type='textarea' name='description' id='description' placeholder='Additional character details (personality traits, ideals, bonds, notes, items...)'></textarea>
+                <textarea type='textarea' name='details' id='description' placeholder='Additional character details (personality traits, ideals, bonds, notes, items...)'></textarea>
                 <input type='text' placeholder='image URL' className='url' name='image'></input>
             </form>
         );
