@@ -53,6 +53,8 @@ class Login extends Component {
         .then(
             json=>{
                 localStorage.setItem('token', json.jwt)
+                localStorage.setItem('userInfo', json.userInfo)
+                localStorage.setItem('user', json.user)
             }
         )
     }
