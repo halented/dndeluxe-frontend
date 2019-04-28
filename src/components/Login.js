@@ -77,25 +77,26 @@ class Login extends Component {
                         <button>submit</button>
                     </form>
                 :
-                    <div>Enter a username and password to login:
-                        <form onSubmit={this.login}>
-                            <p><input placeholder='username' 
+                    <>
+                        <form onSubmit={this.login} id='loginForm'>
+                            <p id='a1'>Enter a username and password to login:</p>
+                            <p id='a2'><input placeholder='username' 
                                     name='username' 
                                     className='loginputs' 
                                     value={this.state.username} 
                                     onChange={this.onChange}>
                                     </input></p>
-                            <p><input placeholder='password' 
+                            <p id='a3'><input placeholder='password' 
                                     name='password' 
                                     className='loginputs' 
                                     type='password' 
                                     value={this.state.password} 
                                     onChange={this.onChange}>
                                     </input></p>
-                            <button>submit</button>
+                            <button id='a4'>submit</button>
                         </form>
-                        <p>Or<button onClick={this.showForm}>click here</button> to signup!</p>
-                    </div>
+                        <p id='a5'>Or <button onClick={this.showForm} id='signupBtn'>click here</button> to signup!</p>
+                    </>
                 }
             </div>
         );

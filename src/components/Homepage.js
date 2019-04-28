@@ -8,11 +8,10 @@ class Homepage extends Component {
                 <h1 id='greeting'>Welcome, {localStorage.getItem('username')}!</h1>
                 <div className="gameBox">
                     render most recently visited Game
-                    <br/>
-                    <NavLink to='/games'>
-                    <button>All Games</button>
-                    </NavLink>
                 </div>
+                <NavLink to='/games' id='gamesBtn'>
+                <button>All Games</button>
+                </NavLink>
                 <img src={localStorage.getItem('avatar')} alt='avatar' className='avatar'></img>
                 <NavLink to='/profile' id='profieBtn'>
                 <button>Full Profile</button>
