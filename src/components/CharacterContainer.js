@@ -8,13 +8,13 @@ class CharacterContainer extends Component {
 
     render() {
         return (
-            <>
-                <div className='pageBoxes'>
-                    iterate over characters list
-                </div>
-                    <NavLink to='/new-character'><button id='newCharBtn'>Make a new Character! =></button>
-                    </NavLink>
-            </>
+            <div className='pageBoxes'>
+                iterate over characters list
+            
+                <NavLink to='/new-character' id='newCharBtn'>
+                <button >Make a new Character! =></button>
+                </NavLink>
+            </div>
         );
     }
 }

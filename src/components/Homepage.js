@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {NavLink} from 'react-router-dom';
 
 class Homepage extends Component {
     render() {
@@ -8,12 +9,18 @@ class Homepage extends Component {
                 <div className="gameBox">
                     render most recently visited Game
                     <br/>
-                    <button>View All Games => </button>
+                    <NavLink to='/games'>
+                    <button>All Games</button>
+                    </NavLink>
                 </div>
-                <img src="http://pre08.deviantart.net/4fab/th/pre/f/2012/338/c/8/don__t_starve___wilson___vector_by_kyuubi3000-d5n18nd.png" alt='avatar' className='avatar'></img>
-                <button id='profieBtn'>View Full Profile =></button>
+                <img src={localStorage.getItem('avatar')} alt='avatar' className='avatar'></img>
+                <NavLink to='/profile' id='profieBtn'>
+                <button>Full Profile</button>
+                </NavLink>
                 <p id='oneLiner'>render most recently visited Character</p>
-                <button id='charBtn'>View All Characters =></button>
+                <NavLink to='/characters' id='charBtn'>
+                <button>All Characters</button>
+                </NavLink>
             </div>
         );
     }

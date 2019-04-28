@@ -28,7 +28,12 @@ class Login extends Component {
         })
         })
         .then(r => r.json())
-        .then(json=> localStorage.setItem('userInfo', json))
+        .then(json=> {
+            localStorage.setItem('token', json.jwt)
+                localStorage.setItem('avatar', json.user_info.avatar)
+                localStorage.setItem('username', json.user_info.username)
+                localStorage.setItem('userID', json.user_info.id)
+        })
     }
 
     onChange = (ev) => {
@@ -53,8 +58,9 @@ class Login extends Component {
         .then(
             json=>{
                 localStorage.setItem('token', json.jwt)
-                localStorage.setItem('userInfo', json.userInfo)
-                localStorage.setItem('user', json.user)
+                localStorage.setItem('avatar', json.user_info.avatar)
+                localStorage.setItem('username', json.user_info.username)
+                localStorage.setItem('userID', json.user_info.id)
             }
         )
     }

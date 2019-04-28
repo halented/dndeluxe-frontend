@@ -44,6 +44,7 @@ button {
   background-color: rgb(69, 55, 43);
   color: cornsilk;
   font-weight: bold;
+  padding: 5px;
 }
 button:hover {
   background-color: rgb(96, 76, 59);
@@ -94,22 +95,74 @@ input:focus, textarea:focus  {
 
 .avatar {
   grid-row-start: 2;
-  grid-row-end: 5;
+  grid-row-end: 4;
   grid-column-start: 4;
   grid-column-end: 7;
   border-radius: 5px;
   border-style: solid;
   background-color: rgb(97, 90, 62);
   max-width: 100%;
-  max-height: 100%
+  height: 50%
+}
+
+#avatarProfilePage {
+  grid-row-start: 1;
+  grid-row-end: 4;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  border-radius: 5px;
+  border-style: solid;
+  background-color: rgb(97, 90, 62);
+  max-width: 100%;
+  height: 50%
+}
+#greet2 {
+grid-row: 4;
+grid-column: 2 span;
+display: flex;
+align-self: flex-start;
+font-style: italic;
+border-top: dashed black
 }
 
 #profieBtn {
-  grid-row-start: 4;
+  grid-row-start: 5;
   grid-column: 4/7;
   height: 20%;
   display: flex;
-  align-self: flex-end;
+  align-self: flex-start;
+}
+#editProBtn{
+  grid-row: 5;
+  grid-column: 2 span;
+  display: flex;
+  align-self: flex-start;
+  justify-content: center;
+}
+
+#profileForm {
+font-weight: bold;
+grid-row: 4 span;
+grid-column: 5 span;
+align-self: center;
+justify-content: center
+}
+
+#formGreet {
+  font-style: italic;
+}
+
+#bioEdit {
+ width: 50%;
+}
+
+#profLogo {
+  opacity: .7;
+  grid-row-start: 5;
+  grid-column: 5 span;
+  max-width: 100%;
+  height: 23%;
+  justify-self: center;
 }
 
 #charBtn {
@@ -130,15 +183,7 @@ input:focus, textarea:focus  {
   grid-column: 1/4
 }
 #newCharBtn {
-  grid-row: 5;
-  grid-column: 5 span;
-  font-size: x-large;
-  max-height: 30%;
-  justify-self: center;
-  border: 2px solid rgb(14, 13, 12);
-  border-radius: 5px;
-  background-color: rgb(45, 42, 40);
-  font-family: 'Courier New', Courier, monospace;
+  grid-row-start: 3;
 }
 .characterForm {
   grid-row: 2/10;
@@ -224,14 +269,8 @@ input:focus, textarea:focus  {
 }
 .singlets {
   grid-row: 3;
-  grid-column: 1/5;
-}
-.sword {
-  grid-row-start: 4;
-  grid-column-start: 1;
-  grid-column-end: 5;
-  opacity: .7;
-  z-index: 0;
+  grid-column: 5 span;
+  display: inline;
 }
 
 #description {

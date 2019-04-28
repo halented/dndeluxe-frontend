@@ -26,13 +26,14 @@ class CharacterForm extends Component {
     postChar = (ev) => {
         ev.preventDefault()
         let charData = this.parseDetails()
-        let postData = {character: charData}
+        let postData = JSON.stringify(charData)
+        console.log(postData)
         fetch(`http://localhost:3000/users/1/new-character`, {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             },
-            body: JSON.stringify(postData)
+            body: {character: postData}
         })
         .then(response=>response.json())
         .then(console.log)
@@ -99,15 +100,12 @@ class CharacterForm extends Component {
                     <option>Lawful Evil</option>
                 </select>
                 </div>
-                <button type='submit' id='subBtn'>Add Character!</button>
+                <button type='submit' id='subBtn'>Save!</button>
                 <div className='singlets'>
                     <input type='number' min='-5' max='20' name='initiative' className='formBox' placeholder='Init'></input>
                     <input type='number' min='-5' max='20' name='armorClass' className='formBox' placeholder='AC'></input>
                     <input type='number' min='0' max='100' name='speed' className='formBox' placeholder='Spd'></input>
                     <input type='number' min='-5' max='100' name='hitPoints' className='formBox' placeholder='HP'></input>
-                </div>
-                <div className='sword'>
-                {/* <img src={logo} alt='lego'></img> */}
                 </div>
                 <ul className='statblock'>
                     <li className="statItem">
