@@ -26,8 +26,6 @@ class CharacterForm extends Component {
     postChar = (ev) => {
         ev.preventDefault()
         let charData = this.parseDetails()
-        console.log(charData)
-        let fakeData = {name: "bob"}
         let postData = {character: charData}
         console.log(postData)
         fetch(`http://localhost:3000/characters`, {
@@ -51,7 +49,7 @@ class CharacterForm extends Component {
         data['image'] = document.getElementsByName('image')[0].value
         data['details'] = document.getElementsByName('details')[0].value
         data['level'] = document.getElementsByName('level')[0].value
-        data['class'] = document.getElementsByName('class')[0].value
+        data['character_class'] = document.getElementsByName('characterClass')[0].value
         data['strength'] = document.getElementsByName('strength')[0].value
         data['dexterity'] = document.getElementsByName('dexterity')[0].value
         data['constitution'] = document.getElementsByName('constitution')[0].value
@@ -63,6 +61,7 @@ class CharacterForm extends Component {
         data['speed'] = document.getElementsByName('speed')[0].value
         data['hit_points'] = document.getElementsByName('hitPoints')[0].value
         data['inspiration'] = document.getElementsByName('inspiration')[0].checked
+        data['user_id'] = localStorage.getItem('userID')
         return data
     }
 
@@ -84,7 +83,7 @@ class CharacterForm extends Component {
                 </div>
                 <div className='classBox'>
                     Class:
-                    <select name='class'>
+                    <select name='characterClass'>
                     {this.state.classes.map(c=> {
                         return <option key={c.name}>{c.name}</option>
                     })}
@@ -133,3 +132,23 @@ class CharacterForm extends Component {
 }
 
 export default CharacterForm;
+
+// alignment: "Chaotic Good",
+// armor_class: "13",
+// character_class: "Barbarian",
+// charisma: "10",
+// constitution: "9",
+// details: "you know me",
+// dexterity: "9",
+// hit_points: "21",
+// image: "https://usercontent2.hubstatic.com/13063113.jpg",
+// initiative: "2",
+// inspiration: true,
+// intelligence: "9",
+// level: "1",
+// name: "Geoffry Rush",
+// race: "Dwarf",
+// speed: "30",
+// strength: "8"
+
+// char = Character.create(name: "Geoffry Rush", race: "Dwarf",alignment: "Chaotic Good", image: "https://usercontent2.hubstatic.com/13063113.jpg", details: "you know me", level: 1, character_class: "Barbarian", strength: "8", dexterity: "9", constitution: "9", intelligence: "9", wisdom: "9", charisma: "10", initiative: "2", armor_class: "13", speed: "30", hit_points: "21", inspiration: true^C
