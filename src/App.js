@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, NavLink, Switch, Redirect} from 'react-router-dom';
+// import { connect } from 'react-redux'
+// import {login, logout} from './actions/appActions'
 import Homepage from './components/Homepage'
 import GameContainer from './components/GameContainer'
 import CharacterContainer from './components/CharacterContainer'
@@ -14,9 +16,6 @@ import './App.css';
 
 
 class App extends Component {
-  // state = {
-  //   userExists: false
-  // }
 
   render(){
   return (
@@ -46,6 +45,7 @@ class App extends Component {
         <div className="App">
           <img src={logo} alt="logoo" className="logo"></img>
           <Login className="login"/>
+          <Route path='/logout' render={()=> (<Redirect to='/login'/>)}/>
         </div>
         }
       </>
@@ -54,4 +54,13 @@ class App extends Component {
   }
 }
 
-export default App;
+// const mapStateToProps = (state) => {
+//   return {
+//     userExists: this.state.userExists
+//   }
+// }
+// const mapDispatchToProps = () => {
+  
+// }
+// connect(mapStateToProps, mapDispatchToProps)
+export default (App);

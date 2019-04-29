@@ -26,14 +26,18 @@ class CharacterForm extends Component {
     postChar = (ev) => {
         ev.preventDefault()
         let charData = this.parseDetails()
-        let postData = JSON.stringify(charData)
+        console.log(charData)
+        let fakeData = {name: "bob"}
+        let postData = {character: charData}
         console.log(postData)
-        fetch(`http://localhost:3000/users/1/new-character`, {
+        fetch(`http://localhost:3000/characters`, {
             method: 'POST',
             headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                "Content-Type": "application/json",
+                Accept: "application/json"
             },
-            body: {character: postData}
+            body: JSON.stringify(postData)
         })
         .then(response=>response.json())
         .then(console.log)

@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux'
-// import logo from '../logo.png'
 
 class Login extends Component {
-        state = {
+    constructor(props) {
+        super(props);
+        this.state = {
             username: '',
             password: '',
             avatar: '',
             showSignUp: false
         }
+    }
+    
     
 
     signUp = (ev)=> {
@@ -30,9 +32,10 @@ class Login extends Component {
         .then(r => r.json())
         .then(json=> {
             localStorage.setItem('token', json.jwt)
-                localStorage.setItem('avatar', json.user_info.avatar)
-                localStorage.setItem('username', json.user_info.username)
-                localStorage.setItem('userID', json.user_info.id)
+            localStorage.setItem('avatar', json.user_info.avatar)
+            localStorage.setItem('username', json.user_info.username)
+            localStorage.setItem('userID', json.user_info.id)
+            localStorage.setItem('bio', json.user_info.bio)
         })
     }
 
@@ -61,6 +64,7 @@ class Login extends Component {
                 localStorage.setItem('avatar', json.user_info.avatar)
                 localStorage.setItem('username', json.user_info.username)
                 localStorage.setItem('userID', json.user_info.id)
+                localStorage.setItem('bio', json.user_info.bio)
             }
         )
     }

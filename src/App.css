@@ -194,6 +194,37 @@ justify-content: center
   justify-self: center;
 }
 
+.bio {
+  grid-row: 1/4;
+  grid-column: 3/6;
+  display: flex;
+  justify-self: center;
+  align-self: center;
+  height: 50%;
+  width:80%;
+  margin: 5%;
+  padding: 5%;
+  border-radius: 3px;
+  border-style: inset;
+  overflow: scroll;
+  font-weight: bold;
+  font-size: small;
+}
+
+.deets {
+  grid-row: 4/6;
+  grid-column: 3/6;
+  max-width: 100%;
+  max-heigh: 100%;
+  margin: 5%;
+  padding: 5%;
+  border-radius: 3px;
+  border-style: inset;
+  overflow: scroll;
+  font-weight: bold;
+  font-size: small;
+}
+
 #charBtn {
   grid-row:5;
   grid-column: 2;

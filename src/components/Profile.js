@@ -66,6 +66,12 @@ class Profile extends Component {
                   <>
                     <img id='avatarProfilePage' src={localStorage.getItem('avatar')} alt="A Pic of You!"></img>
                     <h2 id='greet2'>Lookin' good, {localStorage.getItem('username')}!</h2>
+                    {localStorage.getItem('bio')?
+                        <p className='bio'>{localStorage.getItem('bio')}</p>
+                        :
+                        <p className='bio'>No bio has been provided. Click "Edit profile" to add a bio.</p>
+                    }
+                    <div className='deets'>You have {"calculate number"} character(s) currently playing in {"calculate number"} game(s). Impressive!</div>
                     <button id='editProBtn' onClick={this.handleClick}>Edit profile</button>
                   </>
                 }
