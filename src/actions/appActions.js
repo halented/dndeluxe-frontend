@@ -3,7 +3,7 @@ export const login = () => {
         type: "LOGIN"
     }
 }
-export const logout = () => {
+export const duxLogout = () => {
     return {
         type: "LOGOUT"
     }

@@ -1,12 +1,20 @@
 const initialState = {
-    userExists: false
+    userExists: false,
+    avatar:'',
+    bio: '',
+    username: ''
 }
 
 const loginReducer = (state = initialState, action) => {
     switch (action.type){
         case "LOGIN":
+            return {
+                ...state,
+                userExists: true
+            }
+        case "LOGOUT":
             return {...state,
-                userExists: true}
+                userExists: false}
         default:
             return state
     }

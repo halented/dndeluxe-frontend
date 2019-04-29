@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, NavLink, Switch, Redirect} from 'react-router-dom';
-// import { connect } from 'react-redux'
-// import {login, logout} from './actions/appActions'
+import { connect } from 'react-redux'
 import Homepage from './components/Homepage'
 import GameContainer from './components/GameContainer'
 import CharacterContainer from './components/CharacterContainer'
@@ -21,7 +20,7 @@ class App extends Component {
   return (
     <Router>
       <>
-        {localStorage.getItem('token') ?
+        {this.props.userExists ?
         <div className="loggedIn">
           <img src={miniLogo} alt="logooo" className="minilogo"></img>
           <NavLink to="/home" className='navItem'>Home</NavLink>
@@ -53,14 +52,9 @@ class App extends Component {
   );
   }
 }
-
-// const mapStateToProps = (state) => {
-//   return {
-//     userExists: this.state.userExists
-//   }
-// }
-// const mapDispatchToProps = () => {
-  
-// }
-// connect(mapStateToProps, mapDispatchToProps)
-export default (App);
+const mapStateToProps = state => {
+  return {
+    userExists: state.loginReducer.userExists
+  }
+}
+export default connect(mapStateToProps)(App);

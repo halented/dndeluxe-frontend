@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import {login} from '../actions/appActions'
 
 class Login extends Component {
     constructor(props) {
@@ -37,6 +39,7 @@ class Login extends Component {
             localStorage.setItem('userID', json.user_info.id)
             localStorage.setItem('bio', json.user_info.bio)
         })
+        this.props.login()
     }
 
     onChange = (ev) => {
@@ -67,6 +70,7 @@ class Login extends Component {
                 localStorage.setItem('bio', json.user_info.bio)
             }
         )
+        this.props.login()
     }
 
     render() {
@@ -107,4 +111,15 @@ class Login extends Component {
     }
 }
 
-export default Login;
+const mapStateToProps = state => {
+    return {
+      userExists: state.userExists
+    }
+  }
+  const mapDispatchToProps = dispatch => {
+    return {
+      login: () => dispatch(login()),
+    }
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
