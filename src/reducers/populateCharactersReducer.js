@@ -5,7 +5,11 @@ const initialState = {
 const populateCharactersReducer = (state = initialState, action) => { 
     switch(action.type){
         case "ADDCHAR":
-            return {...state, characters: state.characters.push(action.payload)}
+            // console.log("payload", action.payload)
+            // debugger;
+            let temp = []
+            temp.push(action.payload)
+            return {...state, characters: temp}
         default:
             return state;
     }

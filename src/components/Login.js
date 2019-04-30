@@ -50,7 +50,6 @@ class Login extends Component {
     }
 
     loginLocal=(ev)=>{
-        console.log("what")
         ev.preventDefault()
         fetch("http://localhost:3000/login", {
             method: 'POST',

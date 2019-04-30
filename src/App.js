@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, NavLink, Switch, Redirect} from 'react-router-dom';
 import { connect } from 'react-redux'
-import {login} from './actions/appActions'
+import {login, populateCharacters} from './actions/appActions'
 import Homepage from './components/Homepage'
 import GameContainer from './components/GameContainer'
 import CharacterContainer from './components/CharacterContainer'
@@ -20,6 +20,7 @@ class App extends Component {
   hydrater = () => {
     if(localStorage.getItem('token')) {
       this.props.login()
+      this.props.populateCharacters()
     }
   }
 
@@ -69,6 +70,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     login: () => dispatch(login()),
+    populateCharacters: () => dispatch(populateCharacters())
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);

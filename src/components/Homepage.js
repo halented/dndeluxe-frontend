@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {NavLink} from 'react-router-dom';
+import { connect } from 'react-redux'
 
 class Homepage extends Component {
 
@@ -8,7 +9,13 @@ class Homepage extends Component {
             <div className="pageBoxes">
                 <h1 id='greeting'>Welcome, {localStorage.getItem('username')}!</h1>
                 <div id='homeChars'>
-                    character
+                    {this.props.characters.map(char => {
+                        return <>
+                            <h3>Most recent character:</h3>
+                            <img src={char[0].image} alt='most recent character' id='homepageChar'></img>
+                            <h2>{char[0].name}!</h2>
+                        </>
+                    })}
                 </div>
                 <NavLink to='/characters' id='charBtn'>
                 <button>All Characters</button>
@@ -27,5 +34,7 @@ class Homepage extends Component {
         );
     }
 }
-
-export default Homepage;
+const mapPropsToState = (state) => {
+   return{characters: state.populateCharactersReducer.characters}
+}
+export default connect(mapPropsToState)(Homepage);
