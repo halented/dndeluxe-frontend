@@ -9,13 +9,17 @@ class Homepage extends Component {
             <div className="pageBoxes">
                 <h1 id='greeting'>Welcome, {localStorage.getItem('username')}!</h1>
                 <div id='homeChars'>
-                    {this.props.characters.map(char => {
+                {this.props.characters.length>0 ? 
+                    this.props.characters.map(char => {
                         return <>
                             <h3>Most recent character:</h3>
                             <img src={char[0].image} alt='most recent character' id='homepageChar'></img>
                             <h2>{char[0].name}!</h2>
                         </>
-                    })}
+                    })
+                    :
+                    <h3>No characters yet. Click the link below to begin!</h3>
+                }
                 </div>
                 <NavLink to='/characters' id='charBtn'>
                 <button>All Characters</button>

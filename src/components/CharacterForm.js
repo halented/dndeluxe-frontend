@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import logo from '../logo.png'
 
 class CharacterForm extends Component {
     state = {
@@ -38,7 +37,7 @@ class CharacterForm extends Component {
             body: JSON.stringify(postData)
         })
         .then(response=>response.json())
-        .then(console.log)
+        alert("Character Saved! Navigate to the character's homepage to view.")
     }
 
     parseDetails= () => {
@@ -132,23 +131,3 @@ class CharacterForm extends Component {
 }
 
 export default CharacterForm;
-
-// alignment: "Chaotic Good",
-// armor_class: "13",
-// character_class: "Barbarian",
-// charisma: "10",
-// constitution: "9",
-// details: "you know me",
-// dexterity: "9",
-// hit_points: "21",
-// image: "https://usercontent2.hubstatic.com/13063113.jpg",
-// initiative: "2",
-// inspiration: true,
-// intelligence: "9",
-// level: "1",
-// name: "Geoffry Rush",
-// race: "Dwarf",
-// speed: "30",
-// strength: "8"
-
-// char = Character.create(name: "Geoffry Rush", race: "Dwarf",alignment: "Chaotic Good", image: "https://usercontent2.hubstatic.com/13063113.jpg", details: "you know me", level: 1, character_class: "Barbarian", strength: "8", dexterity: "9", constitution: "9", intelligence: "9", wisdom: "9", charisma: "10", initiative: "2", armor_class: "13", speed: "30", hit_points: "21", inspiration: true^C

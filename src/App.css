@@ -215,7 +215,7 @@ justify-content: center
   grid-row: 4/6;
   grid-column: 3/6;
   max-width: 100%;
-  max-heigh: 100%;
+  max-height: 100%;
   margin: 5%;
   padding: 5%;
   border-radius: 3px;
@@ -225,31 +225,6 @@ justify-content: center
   font-size: small;
 }
 
-/* #charBtn {
-  grid-row:5;
-  grid-column: 2;
-  height: 20%;  
-  display: flex;
-  align-self: flex-start;
-  justify-self: center;
-}
-
-#gamesBtn {
-  grid-row: 3;
-  grid-column: 2;
-  display: flex;
-  align-self: flex-end;
-  justify-self: center;
-}
-#oneLiner {
-  grid-row: 4;
-  grid-column: 2;
-}
-
-.gameBox {
-  grid-row: 2/4;
-  grid-column: 1/4
-} */
 #charBtn {
   grid-row: 3;
   grid-column: 2;
@@ -260,6 +235,12 @@ justify-content: center
 #homeChars {
   grid-row: 2/4;
   grid-column: 1/4;
+}
+#homepageChar {
+  max-height: 50%;
+  border-radius: 5px;
+  border-style: solid;
+  background-color: rgb(97, 90, 62);
 }
 #gameBox {
   grid-row: 4;
