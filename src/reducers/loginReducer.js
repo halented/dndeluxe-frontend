@@ -3,7 +3,6 @@ const initialState = {
 }
 
 const loginReducer = (state = initialState, action) => {
-    console.log("inside reducer", action)
     switch (action.type){
         case "LOGIN":
             return {

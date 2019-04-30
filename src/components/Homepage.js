@@ -8,15 +8,13 @@ class Homepage extends Component {
         return (
             <div className="pageBoxes">
                 <h1 id='greeting'>Welcome, {localStorage.getItem('username')}!</h1>
-                <div id='homeChars'>
-                {this.props.characters.length>0 ? 
-                    this.props.characters.map(char => {
-                        return <>
+                <div id='homeChars'> {console.log(this.props.characters[0])}
+                {this.props.characters[0] ? 
+                        <>
                             <h3>Most recent character:</h3>
-                            <img src={char[0].image} alt='most recent character' id='homepageChar'></img>
-                            <h2>{char[0].name}!</h2>
+                            <img src={this.props.characters[0].image} alt='most recent character' id='homepageChar'></img>
+                            <h2>{this.props.characters[0].name}!</h2>
                         </>
-                    })
                     :
                     <h3>No characters yet. Click the link below to begin!</h3>
                 }

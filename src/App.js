@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import {login, populateCharacters} from './actions/appActions'
 import Homepage from './components/Homepage'
 import GameContainer from './components/GameContainer'
+import GameForm from './components/GameForm'
 import CharacterContainer from './components/CharacterContainer'
 import CharacterForm from './components/CharacterForm'
 import Profile from './components/Profile';
@@ -44,6 +45,7 @@ class App extends Component {
             <Route exact path='/profile'component={Profile}/> 
             <Route exact path='/logout' component={Logout}/>
             <Route exact path='/new-character' component={CharacterForm}/>
+            <Route exact path='/new-game' component={GameForm}/>
             <Route path="/login" render={()=> (<Redirect to='/home'/>)}/>
             <Route exact path="/" render={()=> (<Redirect to='/home'/>)}/>
             <Route component={NoMatch}/>

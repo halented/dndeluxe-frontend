@@ -256,6 +256,23 @@ justify-content: center
   justify-self: center;
 }
 
+#gameLabel {
+  grid-row: 1/2;
+  grid-column: 8 span;
+  justify-self: center;
+  font-size: x-large
+}
+.allGameInputs {
+  grid-column: 8 span;
+  justify-self: center;
+  margin: 10px;
+  width: 50%;
+  overflow:scroll;
+}
+#groupName {
+  grid-row: 2
+} 
+
 #newCharBtn {
   grid-row-start: 3;
 }
