@@ -47,29 +47,29 @@ class Login extends Component {
     }
 
     showForm = () => {
-        this.setState({showSignUp: true})
+        this.setState({showSignUp: !this.state.showSignUp})
     }
 
-    login = (ev) => {
+    login=(ev)=>{
+        console.log("what")
         ev.preventDefault()
         fetch("http://localhost:3000/login", {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json'
-        },
-        body: JSON.stringify({user: {username: this.state.username, password: this.state.password}})
-    })
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json'
+            },
+            body: JSON.stringify({user: {username: this.state.username, password: this.state.password}})
+        })
         .then(response=>response.json())
         .then(
             json=>{
                 localStorage.setItem('token', json.jwt)
-                localStorage.setItem('avatar', json.user_info.avatar)
-                localStorage.setItem('username', json.user_info.username)
                 localStorage.setItem('userID', json.user_info.id)
+                localStorage.setItem('avatar',json.user_info.avatar)
+                localStorage.setItem('username',json.user_info.username)
                 localStorage.setItem('bio', json.user_info.bio)
-            }
-        )
+        })
         this.props.login()
     }
 
@@ -77,6 +77,7 @@ class Login extends Component {
         return (
             <div className="login">
                 { this.state.showSignUp ?
+                <>
                     <form onSubmit={this.signUp}>
                         Enter a username and password, and a link to your avatar to sign up:
                         <p><input placeholder='username' name='username' className='loginputs' value={this.state.username} onChange={this.onChange}></input></p>
@@ -84,6 +85,8 @@ class Login extends Component {
                         <p><input placeholder='avatar URL' name='avatar' className='loginputs' type='text' value={this.state.avatar} onChange={this.onChange}></input></p>
                         <button>submit</button>
                     </form>
+                    <button onClick={this.showForm}>Go Back</button>
+                </>
                 :
                     <>
                         <form onSubmit={this.login} id='loginForm'>
@@ -113,7 +116,10 @@ class Login extends Component {
 
 const mapStateToProps = state => {
     return {
-      userExists: state.userExists
+        userExists: state.userExists,
+        avatar: state.avatar,
+        bio: state.bio,
+        username: state.username
     }
   }
   const mapDispatchToProps = dispatch => {

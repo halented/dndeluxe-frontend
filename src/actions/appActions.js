@@ -1,6 +1,10 @@
-export const login = () => {
+export const login = (av, un, bi) => {
+    console.log("inside action")
     return {
-        type: "LOGIN"
+        type: "LOGIN",
+        avatar: av,
+        username: un,
+        bio: bi
     }
 }
 export const duxLogout = () => {

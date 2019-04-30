@@ -253,6 +253,22 @@ justify-content: center
 #newCharBtn {
   grid-row-start: 3;
 }
+#charBox {
+  grid-row: 1/6;
+  grid-column: 1/4;
+  display: grid;
+  grid-template: repeat(4, 25%)/ 50% 50%;
+  overflow: scroll;
+}
+li {
+  align-self: center;
+}
+.charListItem {
+  max-width: 70%;
+  max-height: 100px;
+  border-radius: 5px;
+  border-style: groove;
+}
 .characterForm {
   grid-row: 2/10;
   grid-column: 2/10;
