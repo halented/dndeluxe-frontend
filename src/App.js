@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, NavLink, Switch, Redirect} from 'react-router-dom';
 import { connect } from 'react-redux'
+import {login} from './actions/appActions'
 import Homepage from './components/Homepage'
 import GameContainer from './components/GameContainer'
 import CharacterContainer from './components/CharacterContainer'
@@ -16,12 +17,19 @@ import './App.css';
 
 class App extends Component {
 
+  hydrater = () => {
+    if(localStorage.getItem('token')) {
+      this.props.login()
+    }
+  }
+
   render(){
   return (
     <Router>
       <>
-        {this.props.userExists ?
+        {this.props.userExists || localStorage.getItem('token') ?
         <div className="loggedIn">
+          {this.hydrater()}
           <img src={miniLogo} alt="logooo" className="minilogo"></img>
           <NavLink to="/home" className='navItem'>Home</NavLink>
           <NavLink to='/games' className='navItem'>Games</NavLink>
@@ -54,7 +62,13 @@ class App extends Component {
 }
 const mapStateToProps = state => {
   return {
-    userExists: state.loginReducer.userExists
+    userExists: state.loginReducer.userExists,
+    characters: state.loginReducer.characters
   }
 }
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => {
+  return {
+    login: () => dispatch(login()),
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(App);

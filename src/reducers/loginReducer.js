@@ -1,8 +1,5 @@
 const initialState = {
-    userExists: false,
-    avatar:'',
-    bio: '',
-    username: ''
+    userExists: false
 }
 
 const loginReducer = (state = initialState, action) => {
@@ -11,10 +8,7 @@ const loginReducer = (state = initialState, action) => {
         case "LOGIN":
             return {
                 ...state,
-                userExists: true,
-                avatar: action.avatar,
-                bio: action.bio,
-                username: action.username
+                userExists: true
             }
         case "LOGOUT":
             return {...state,

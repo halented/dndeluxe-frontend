@@ -4,6 +4,7 @@ import {duxLogout} from '../actions/appActions'
 
 class Logout extends Component {
     out = () => {
+        localStorage.clear()
         this.props.duxLogout()
     }
     ok = () => {

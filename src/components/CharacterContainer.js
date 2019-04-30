@@ -5,14 +5,21 @@ class CharacterContainer extends Component {
     state = {
         characters: []
     }
+    
     componentDidMount(){
-        fetch("http://localhost:3000/characters", 
+        fetch(`http://localhost:3000/users/${localStorage.getItem('userID')}/characters`, 
         {headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }})
         .then(response=>response.json())
         .then(json=> {
-            this.setState({characters: json})
+            let temp = []
+            json.forEach(char=> {
+                if(parseInt(char.user_id) === parseInt(localStorage.getItem('userID'))) {
+                    temp.push(char)
+                }
+            })
+            this.setState({characters: temp})
         })
     }
 

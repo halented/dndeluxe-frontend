@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import {login} from '../actions/appActions'
+import {login, populateCharacters} from '../actions/appActions'
 
 class Login extends Component {
     constructor(props) {
@@ -12,7 +12,6 @@ class Login extends Component {
             showSignUp: false
         }
     }
-    
     
 
     signUp = (ev)=> {
@@ -38,8 +37,8 @@ class Login extends Component {
             localStorage.setItem('username', json.user_info.username)
             localStorage.setItem('userID', json.user_info.id)
             localStorage.setItem('bio', json.user_info.bio)
+            this.props.login()
         })
-        this.props.login()
     }
 
     onChange = (ev) => {
@@ -50,7 +49,7 @@ class Login extends Component {
         this.setState({showSignUp: !this.state.showSignUp})
     }
 
-    login=(ev)=>{
+    loginLocal=(ev)=>{
         console.log("what")
         ev.preventDefault()
         fetch("http://localhost:3000/login", {
@@ -69,8 +68,9 @@ class Login extends Component {
                 localStorage.setItem('avatar',json.user_info.avatar)
                 localStorage.setItem('username',json.user_info.username)
                 localStorage.setItem('bio', json.user_info.bio)
+                this.props.login()
+                this.props.populateCharacters()
         })
-        this.props.login()
     }
 
     render() {
@@ -89,7 +89,7 @@ class Login extends Component {
                 </>
                 :
                     <>
-                        <form onSubmit={this.login} id='loginForm'>
+                        <form onSubmit={this.loginLocal} id='loginForm'>
                             <p id='a1'>Enter a username and password to login:</p>
                             <p id='a2'><input placeholder='username' 
                                     name='username' 
@@ -125,6 +125,7 @@ const mapStateToProps = state => {
   const mapDispatchToProps = dispatch => {
     return {
       login: () => dispatch(login()),
+      populateCharacters: () => (populateCharacters())
     }
   }
 

@@ -28,7 +28,7 @@ class CharacterForm extends Component {
         let charData = this.parseDetails()
         let postData = {character: charData}
         console.log(postData)
-        fetch(`http://localhost:3000/characters`, {
+        fetch(`http://localhost:3000/users/${localStorage.getItem('userID')}/characters`, {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
