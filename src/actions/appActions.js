@@ -11,16 +11,15 @@ export const duxLogout = () => {
 }
 
 export const populateGames = () => {
+    console.log("here in populate games")
     return dispatch => {
-        console.log("inside the games one")
-        fetch(`http://localhost:3000/games`, 
+        fetch(`http://localhost:3000/user_games`, 
         {headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }})
         .then(response=>response.json())
             .then(json=>{
                 let temp = []
-                debugger;
                 json.forEach(game=> {
                     if (parseInt(game.user_id) !== parseInt(localStorage.getItem('userID'))){
                         temp.push(game)

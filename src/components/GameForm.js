@@ -28,8 +28,28 @@ class GameForm extends Component {
             body: JSON.stringify(postData)
         })
         .then(response=>response.json())
-        .then(console.log)
-        alert("Game Saved! Navigate to the game's homepage to view.")
+        .then(json=>this.postUserGame(json))
+    }
+
+    postUserGame = (json)=> {
+        let postData = {}
+        postData['user_id'] = localStorage.getItem('userID')
+        postData['game_id'] = json.id
+        fetch(`http://localhost:3000/user_games`, {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify(postData)
+        })
+        .then(json => {
+            if(json.id)
+            {alert("yo it posted motherfucker")}
+            else
+            alert("yo it didnt post motherfucker")
+        })
     }
 
     render() {

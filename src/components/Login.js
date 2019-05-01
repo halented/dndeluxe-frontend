@@ -9,7 +9,7 @@ class Login extends Component {
             username: '',
             password: '',
             avatar: '',
-            showSignUp: false
+            showSignUp: true
         }
     }
     
@@ -62,8 +62,8 @@ class Login extends Component {
             body: JSON.stringify({user: {username: this.state.username, password: this.state.password}})
         })
         .then(response=>response.json())
-        .then(
-            json=>{
+        .then(json=>{
+                if(json.user_info){
                 localStorage.setItem('token', json.jwt)
                 localStorage.setItem('userID', json.user_info.id)
                 localStorage.setItem('avatar',json.user_info.avatar)
@@ -71,7 +71,10 @@ class Login extends Component {
                 localStorage.setItem('bio', json.user_info.bio)
                 this.props.login()
                 this.props.populateCharacters()
-                this.props.populateGames()
+                this.props.populateGames()}
+                else {
+                    alert("No user found! Please sign up :)")
+                }
         })
     }
 
@@ -80,35 +83,35 @@ class Login extends Component {
             <div className="login">
                 { this.state.showSignUp ?
                 <>
-                    <form onSubmit={this.signUp}>
-                        Enter a username and password, and a link to your avatar to sign up:
-                        <p><input placeholder='username' name='username' className='loginputs' value={this.state.username} onChange={this.onChange}></input></p>
-                        <p><input placeholder='password' name='password' className='loginputs' type='password' value={this.state.password} onChange={this.onChange}></input></p>
-                        <p><input placeholder='avatar URL' name='avatar' className='loginputs' type='text' value={this.state.avatar} onChange={this.onChange}></input></p>
-                        <button>submit</button>
+                    <form onSubmit={this.signUp} id='loginForm'>
+                        <p className='a1'>Enter a username and password, and a link to your avatar to sign up:</p>
+                        <p className='a2'><input placeholder='username' name='username' className='loginputs' value={this.state.username} onChange={this.onChange}></input></p>
+                        <p className='a3'><input placeholder='password' name='password' className='loginputs' type='password' value={this.state.password} onChange={this.onChange}></input></p>
+                        <p className='a4'><input placeholder='avatar URL' name='avatar' className='loginputs' type='text' value={this.state.avatar} onChange={this.onChange}></input></p>
+                        <button className='btns'>submit</button>
                     </form>
-                    <button onClick={this.showForm}>Go Back</button>
+                    <button onClick={this.showForm} className='btns'>Go Back</button>
                 </>
                 :
                     <>
                         <form onSubmit={this.loginLocal} id='loginForm'>
-                            <p id='a1'>Enter a username and password to login:</p>
-                            <p id='a2'><input placeholder='username' 
+                            <p className='a1'>Enter a username and password to login:</p>
+                            <p className='a2'><input placeholder='username' 
                                     name='username' 
                                     className='loginputs' 
                                     value={this.state.username} 
                                     onChange={this.onChange}>
                                     </input></p>
-                            <p id='a3'><input placeholder='password' 
+                            <p className='a3'><input placeholder='password' 
                                     name='password' 
                                     className='loginputs' 
                                     type='password' 
                                     value={this.state.password} 
                                     onChange={this.onChange}>
                                     </input></p>
-                            <button id='a4'>submit</button>
+                            <button className='a4'>submit</button>
                         </form>
-                        <p id='a5'>Or <button onClick={this.showForm} id='signupBtn'>click here</button> to signup!</p>
+                        <p className='a5'>Or <button onClick={this.showForm} id='signupBtn'>click here</button> to signup!</p>
                     </>
                 }
             </div>
