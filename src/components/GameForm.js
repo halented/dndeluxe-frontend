@@ -17,7 +17,7 @@ class GameForm extends Component {
         postData['group_name'] = document.getElementById('groupName').value
         postData['location'] = document.getElementById('location').value
         postData['details'] = document.getElementById('details').value
-        fetch(`http://localhost:3000/users/${localStorage.getItem('userID')}/characters`, {
+        fetch(`http://localhost:3000/games`, {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -27,7 +27,8 @@ class GameForm extends Component {
             body: JSON.stringify(postData)
         })
         .then(response=>response.json())
-        alert("Character Saved! Navigate to the character's homepage to view.")
+        .then(console.log)
+        alert("Game Saved! Navigate to the game's homepage to view.")
     }
 
     render() {

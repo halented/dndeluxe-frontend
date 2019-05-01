@@ -60,6 +60,7 @@ class CharacterForm extends Component {
         data['hit_points'] = document.getElementsByName('hitPoints')[0].value
         data['inspiration'] = document.getElementsByName('inspiration')[0].checked
         data['user_id'] = localStorage.getItem('userID')
+        data['game_id'] = "nil"
         return data
     }
 

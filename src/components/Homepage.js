@@ -8,12 +8,12 @@ class Homepage extends Component {
         return (
             <div className="pageBoxes">
                 <h1 id='greeting'>Welcome, {localStorage.getItem('username')}!</h1>
-                <div id='homeChars'> {console.log(this.props.characters[0])}
+                <div id='homeChars'>
                 {this.props.characters[0] ? 
                         <>
                             <h3>Most recent character:</h3>
-                            <img src={this.props.characters[0].image} alt='most recent character' id='homepageChar'></img>
-                            <h2>{this.props.characters[0].name}!</h2>
+                            <img src={this.props.characters[this.props.characters.length-1].image} alt='most recent character' id='homepageChar'></img>
+                            <h2>{this.props.characters[this.props.characters.length-1].name}!</h2>
                         </>
                     :
                     <h3>No characters yet. Click the link below to begin!</h3>
@@ -37,6 +37,8 @@ class Homepage extends Component {
     }
 }
 const mapPropsToState = (state) => {
-   return{characters: state.populateCharactersReducer.characters}
+   return{
+       characters: state.populateCharactersReducer.characters
+}
 }
 export default connect(mapPropsToState)(Homepage);

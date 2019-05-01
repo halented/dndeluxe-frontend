@@ -5,6 +5,20 @@ class GameContainer extends Component {
     state= {
         games: []
     }
+
+    componentDidMount(){
+        fetch(`http://localhost:3000/games`, {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }})
+            .then(response=>response.json())
+            .then(json=> {
+                console.log(json)
+                this.setState({games: json})
+            })
+    }
+
     render() {
         return (
             <div className='pageBoxes'>
@@ -12,10 +26,7 @@ class GameContainer extends Component {
                 <ul id='charBox'>
                 {this.state.games.map(game=> {
                     return (
-                    <>
-                    <li>{game.name}</li>
-                    <p>being held at {game.location}</p>
-                    </>
+                    <li className='oneGame'>{game.group_name}, being held at {game.location}.</li>
                     )
                 })}
                 </ul>
