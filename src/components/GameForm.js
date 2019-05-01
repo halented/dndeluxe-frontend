@@ -17,6 +17,7 @@ class GameForm extends Component {
         postData['group_name'] = document.getElementById('groupName').value
         postData['location'] = document.getElementById('location').value
         postData['details'] = document.getElementById('details').value
+        postData['user_id'] = localStorage.getItem('userID')
         fetch(`http://localhost:3000/games`, {
             method: 'POST',
             headers: {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import {login, populateCharacters} from '../actions/appActions'
+import {login, populateCharacters, populateGames} from '../actions/appActions'
 
 class Login extends Component {
     constructor(props) {
@@ -38,6 +38,8 @@ class Login extends Component {
             localStorage.setItem('userID', json.user_info.id)
             localStorage.setItem('bio', json.user_info.bio)
             this.props.login()
+            this.props.populateCharacters()
+            this.props.populateGames()
         })
     }
 
@@ -69,6 +71,7 @@ class Login extends Component {
                 localStorage.setItem('bio', json.user_info.bio)
                 this.props.login()
                 this.props.populateCharacters()
+                this.props.populateGames()
         })
     }
 
@@ -124,7 +127,8 @@ const mapStateToProps = state => {
   const mapDispatchToProps = dispatch => {
     return {
       login: () => dispatch(login()),
-      populateCharacters: () => (populateCharacters())
+      populateCharacters: () => dispatch(populateCharacters()),
+      populateGames: () => dispatch(populateGames())
     }
   }
 

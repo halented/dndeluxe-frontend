@@ -257,7 +257,7 @@ justify-content: center
   grid-column: 2;
   height: 20%;  
   display: flex;
-  align-self: flex-start;
+  align-self: flex-end;
   justify-self: center;
 }
 
