@@ -1,3 +1,5 @@
+
+
 export const login = () => {
     return {
         type: "LOGIN",
@@ -21,18 +23,19 @@ export const populateGames = () => {
             .then(json=>{
                 let temp = []
                 json.forEach(game=> {
-                    if (parseInt(game.user_id) !== parseInt(localStorage.getItem('userID'))){
+                    if (parseInt(game.user.id) === parseInt(localStorage.getItem('userID'))){
                         temp.push(game)
                     }
+                    console.log(temp)
                 })
                 dispatch({type: "ADDGAMES", payload: temp})
-            })
+            }
+            )
     }
 }
 
 export const populateCharacters = () => {
     return dispatch => {
-        console.log("inside populate chars")
         fetch(`http://localhost:3000/users/${localStorage.getItem('userID')}/characters`, 
         {headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`

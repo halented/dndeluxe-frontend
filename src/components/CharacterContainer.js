@@ -1,34 +1,22 @@
 import React, { Component } from 'react';
 import {NavLink} from 'react-router-dom';
+import { connect } from 'react-redux'
+import { populateCharacters } from '../actions/appActions'
 
 class CharacterContainer extends Component {
-    state = {
-        characters: []
-    }
-    
+
     componentDidMount(){
-        fetch(`http://localhost:3000/users/${localStorage.getItem('userID')}/characters`, 
-        {headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-        }})
-        .then(response=>response.json())
-        .then(json=> {
-            let temp = []
-            json.forEach(char=> {
-                if(parseInt(char.user_id) === parseInt(localStorage.getItem('userID'))) {
-                    temp.push(char)
-                }
-            })
-            this.setState({characters: temp})
-        })
+        this.props.populateCharacters()
     }
 
     render() {
         return (
             <div className='pageBoxes'>
-                {this.state.characters.length>0 ?
+                {this.props.characters[0] ?
+                <>
+                <h2 className='topGreet'>Your Characters:</h2>
                 <ul id='charBox'>
-                {this.state.characters.map(char=> {
+                {this.props.characters.map(char=> {
                     return (
                     <>
                     <li>{char.name}</li>
@@ -37,15 +25,27 @@ class CharacterContainer extends Component {
                     )
                 })}
                 </ul>
+                </>
                 :
-                <div>No characters yet. Click the button below to make one!</div>
+                <div id='emptyChar'>No characters yet. Click the button below to make one!</div>
                 }
                 <NavLink to='/new-character' id='newCharBtn'>
-                <button >Make a new Character! =></button>
+                <button>Make a new Character! =></button>
                 </NavLink>
             </div>
         );
     }
 }
 
-export default CharacterContainer;
+const mapStateToProps = state => {
+    return {
+        characters: state.populateCharactersReducer.characters
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        populateCharacters: () => dispatch(populateCharacters())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CharacterContainer);

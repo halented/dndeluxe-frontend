@@ -73,6 +73,13 @@
   justify-self: center;
   align-self: center;
 }
+#gamesBtn {
+grid-row: 5;
+grid-column: 2;
+display: flex;
+align-self: flex-start;
+justify-self: center;
+}
 button {
   border-radius: 5px;
   background-color: rgb(69, 55, 43);
@@ -128,7 +135,7 @@ input:focus, textarea:focus  {
 }
 .oneGame {
   border-radius: 5px;
-  border-style: solid;
+  border: 1px solid;
   background-color: rgb(97, 90, 62);
   margin: 4px;
 }
@@ -170,6 +177,7 @@ border-top: dashed black
   height: 20%;
   display: flex;
   align-self: flex-start;
+  justify-content: center;
 }
 #editProBtn{
   grid-row: 5;
@@ -189,6 +197,11 @@ justify-content: center
 
 #formGreet {
   font-style: italic;
+}
+#backBtn {
+  grid-row: 4;
+  grid-column: 5 span;
+  justify-items: center;
 }
 
 #bioEdit {
@@ -259,15 +272,6 @@ justify-content: center
   padding: 5%;
 }
 
-#gamesBtn {
-  grid-row:5;
-  grid-column: 2;
-  height: 20%;  
-  display: flex;
-  align-self: flex-start;
-  justify-self: center;
-}
-
 #gameLabel {
   grid-row: 1/2;
   grid-column: 8 span;
@@ -285,16 +289,31 @@ justify-content: center
   grid-row: 2
 } 
 
-#newCharBtn {
-  grid-row-start: 3;
+#emptyChar {
+  grid-column: 5 span;
+  grid-row: 2
 }
-
+#newCharBtn {
+  grid-row: 3;
+  grid-column: 5 span;
+  justify-content: center;
+}
+.topGreet {
+  grid-row: 1;
+  grid-column: 5 span; 
+  align-self: center;
+  text-decoration: underline;
+}
 #charBox {
-  grid-row: 1/6;
+  grid-row: 2/6;
   grid-column: 1/4;
   display: grid;
   grid-template: repeat(4, 25%)/ 50% 50%;
   overflow: scroll;
+  padding: 2%;
+  background-color: rgb(123, 118, 98);
+  border: 5px solid rgb(34, 22, 8);
+  border-radius: 5px;
 }
 
 li {
@@ -448,7 +467,8 @@ ul {
   background-color: rgb(45, 42, 40);
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
-  opacity: .9
+  opacity: .9;
+  color: rgb(154, 34, 34);
 }
 .navItem:hover {
   background-color: rgb(65, 60, 57);
@@ -458,3 +478,18 @@ ul {
   grid-template: repeat(5, 20%) / repeat(5, 20%) 
 }
 
+#b1 {
+  grid-row: 1;
+  grid-column: 5 span
+}
+#b2 {
+  grid-row: 2;
+}
+#b3 {
+  grid-row: 3;
+}
+#b2, #b3 {
+  cursor: pointer;
+  grid-column: 3;
+  max-height: 50%
+}

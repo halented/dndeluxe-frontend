@@ -28,13 +28,17 @@ class GameForm extends Component {
             body: JSON.stringify(postData)
         })
         .then(response=>response.json())
-        .then(json=>this.postUserGame(json))
+        .then(json=>{
+            localStorage.setItem('game', json)
+            this.postUserGame(json)
+        })
     }
 
     postUserGame = (json)=> {
         let postData = {}
         postData['user_id'] = localStorage.getItem('userID')
         postData['game_id'] = json.id
+        console.log("this is the postData you've made to create a usergame", postData)
         fetch(`http://localhost:3000/user_games`, {
             method: 'POST',
             headers: {
@@ -44,11 +48,12 @@ class GameForm extends Component {
             },
             body: JSON.stringify(postData)
         })
+        .then(response => response.json())
         .then(json => {
-            if(json.id)
-            {alert("yo it posted motherfucker")}
+            if(json.game.id)
+            {alert("Game saved!")}
             else
-            alert("yo it didnt post motherfucker")
+            alert("Game failed to post. Please try again.")
         })
     }
 

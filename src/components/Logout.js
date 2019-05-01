@@ -4,7 +4,7 @@ import {duxLogout} from '../actions/appActions'
 
 class Logout extends Component {
     out = () => {
-        localStorage.clear()
+        localStorage.clear() 
         this.props.duxLogout()
     }
     ok = () => {
@@ -13,9 +13,9 @@ class Logout extends Component {
     render() {
     return(
         <div className="pageBoxes">
-            <h1>Truly logout tho?</h1>
-            <h3 onClick={this.out}>yep.</h3>
-            <h3 onClick={this.ok}>no!</h3>
+            <h1 id='b1'>Truly logout tho?</h1>
+            <h3 id='b2' onClick={this.out}>yep.</h3>
+            <h3 id='b3' onClick={this.ok}>no!</h3>
         </div>
     )
     }

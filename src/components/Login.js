@@ -9,7 +9,7 @@ class Login extends Component {
             username: '',
             password: '',
             avatar: '',
-            showSignUp: true
+            showSignUp: false
         }
     }
     
@@ -121,10 +121,7 @@ class Login extends Component {
 
 const mapStateToProps = state => {
     return {
-        userExists: state.userExists,
-        avatar: state.avatar,
-        bio: state.bio,
-        username: state.username
+        userExists: state.loginReducer.userExists
     }
   }
   const mapDispatchToProps = dispatch => {

@@ -26,7 +26,7 @@ class Homepage extends Component {
                 {this.props.games[0] ? 
                         <>
                             <h3>Most recent game:</h3>
-                            <div className='oneGame'>{this.props.games[this.props.games.length-1].group_name}, being held at {this.props.games[this.props.games.length-1].location}!</div>
+                            <div className='oneGame'>{this.props.games[this.props.games.length-1].game.group_name}, being held at {this.props.games[this.props.games.length-1].game.location}!</div>
                         </>
                     :
                     <h3>No games yet. Click the link below to begin!</h3>

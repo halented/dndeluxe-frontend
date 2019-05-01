@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, NavLink, Switch, Redirect} from 'react-router-dom';
 import { connect } from 'react-redux'
-import {login, populateCharacters} from './actions/appActions'
+import {login, populateCharacters, populateGames} from './actions/appActions'
 import Homepage from './components/Homepage'
 import GameContainer from './components/GameContainer'
 import GameForm from './components/GameForm'
@@ -22,6 +22,7 @@ class App extends Component {
     if(localStorage.getItem('token')) {
       this.props.login()
       this.props.populateCharacters()
+      this.props.populateGames()
     }
   }
 
@@ -31,7 +32,6 @@ class App extends Component {
       <>
         {this.props.userExists || localStorage.getItem('token') ?
         <div className="loggedIn">
-          {this.hydrater()}
           <img src={miniLogo} alt="logooo" className="minilogo"></img>
           <NavLink to="/home" className='navItem'>Home</NavLink>
           <NavLink to='/games' className='navItem'>Games</NavLink>
@@ -66,13 +66,14 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     userExists: state.loginReducer.userExists,
-    characters: state.loginReducer.characters
+    characters: state.populateCharactersReducer.characters
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
     login: () => dispatch(login()),
-    populateCharacters: () => dispatch(populateCharacters())
+    populateCharacters: () => dispatch(populateCharacters()),
+    populateGames: () => dispatch(populateGames())
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);

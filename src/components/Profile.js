@@ -11,7 +11,7 @@ class Profile extends Component {
     }
 
     handleClick = () => {
-        this.setState({showEditForms: true})
+        this.setState({showEditForms: !this.state.showEditForms})
     }
 
     handleSubmit = (ev) => {
@@ -20,18 +20,22 @@ class Profile extends Component {
         userData["username"] = this.state.username
         userData["avatar"] = this.state.avatar
         userData["bio"] = this.state.bio
+        let postData = {user: {userData}}
         fetch(`http://localhost:3000/users/${localStorage.getItem('userID')}`, {
-            method: 'PUT',
+            method: 'PATCH',
             headers: {
-                Authentication: `Bearer ${localStorage.getItem('token')}`
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                Accept: "application/json",
+                "Content-Type": 'application/json'
             },
-            body: JSON.stringify({user: userData})
+            body: JSON.stringify(postData)
         })
         .then(response=>response.json())
         .then(json=> {
-            localStorage.setItem('avatar', json.user_info.avatar)
-            localStorage.setItem('username', json.user_info.username)
-            localStorage.setItem('userID', json.user_info.id)
+            console.log(json)
+            // localStorage.setItem('avatar', json.user.avatar)
+            // localStorage.setItem('username', json.user.username)
+            // localStorage.setItem('bio', json.user.bio)
         })
         .then(this.updatePage())
     }
@@ -59,6 +63,7 @@ class Profile extends Component {
                         <label>Personal Bio:</label>
                         <p><textarea type='textarea' name='bio' id='bioEdit' value={this.state.bio} onChange={this.handleChange}></textarea></p>
                         <button type='submit'>Save</button>
+                        <button onClick={this.handleClick} id='backBtn'>Go back</button>
                     </form>
                     <img src={logo} alt="DnDeluxe Logo" id='profLogo'></img>
                   </>

@@ -1,39 +1,31 @@
 import React, { Component } from 'react';
 import {NavLink} from 'react-router-dom';
+import { connect } from 'react-redux'
+import { populateGames } from '../actions/appActions'
 
 class GameContainer extends Component {
-    state= {
-        games: []
-    }
 
     componentDidMount(){
-        fetch(`http://localhost:3000/games`, {
-            method: 'GET',
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`
-            }})
-            .then(response=>response.json())
-            .then(json=> {
-                console.log(json)
-                this.setState({games: json})
-            })
+        this.props.populateGames()
     }
-
     render() {
         return (
             <div className='pageBoxes'>
-                {this.state.games.length>0 ?
+                {this.props.games.length>0 ?
+                <>
+                <h2 className='topGreet'>Your Games:</h2>
                 <ul id='charBox'>
-                {this.state.games.map(game=> {
+                {this.props.games.map(gameObj=> {
                     return (
-                    <li className='oneGame'>{game.group_name}, being held at {game.location}.</li>
+                    <li className='oneGame'>{gameObj.game.group_name}, being held at {gameObj.game.location}.</li>
                     )
                 })}
                 </ul>
+                </>
                 :
                 <div>No games yet. Click the button below to make one!</div>
                 }
-                <NavLink to='/new-game' id='newGameBtn'>
+                <NavLink to='/new-game' id='newCharBtn'>
                 <button >Make a new game! =></button>
                 </NavLink>
             </div>
@@ -41,4 +33,14 @@ class GameContainer extends Component {
     }
 }
 
-export default GameContainer;
+const mapStateToProps = state => {
+    return {
+        games: state.populateGamesReducer.games
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        populateGames: () => dispatch(populateGames())
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(GameContainer);
