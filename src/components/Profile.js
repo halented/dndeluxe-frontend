@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from '../logo.png'
 import toaster from 'toasted-notes';
+import { connect } from 'react-redux'
 
 class Profile extends Component {
     state = {
@@ -76,7 +77,7 @@ class Profile extends Component {
                         :
                         <p className='bio'>No bio has been provided. Click "Edit profile" to add a bio.</p>
                     }
-                    <div className='deets'>You have {"calculate number"} character(s) currently playing in {"calculate number"} game(s). Impressive!</div>
+                    <div className='deets'>You have {this.props.characters.length} character(s) currently playing in {this.props.games.length} game(s). Impressive!</div>
                     <button id='editProBtn' onClick={this.handleClick}>Edit profile</button>
                   </>
                 }
@@ -85,4 +86,11 @@ class Profile extends Component {
     }
 }
 
-export default Profile;
+const mapPropsToState = (state) => {
+    return{
+        characters: state.populateCharactersReducer.characters,
+        games: state.populateGamesReducer.games,
+ }
+ }
+
+export default connect(mapPropsToState)(Profile);

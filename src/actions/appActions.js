@@ -26,7 +26,6 @@ export const populateGames = () => {
                     if (parseInt(game.user.id) === parseInt(localStorage.getItem('userID'))){
                         temp.push(game)
                     }
-                    console.log(temp)
                 })
                 dispatch({type: "ADDGAMES", payload: temp})
             }

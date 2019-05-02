@@ -29,6 +29,7 @@ class GameForm extends Component {
         })
         .then(response=>response.json())
         .then(json=>{
+            console.log('posting actual game', json)
             localStorage.setItem('game', json)
             this.postUserGame(json)
         })
@@ -46,7 +47,7 @@ class GameForm extends Component {
                 "Content-Type": "application/json",
                 Accept: "application/json"
             },
-            body: JSON.stringify(postData)
+            body: JSON.stringify({user_game: postData})
         })
         .then(response => response.json())
         .then(json => {
