@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, NavLink, Switch, Redirect} from 'react-router-dom';
-import { connect } from 'react-redux'
-import {login, populateCharacters, populateGames} from './actions/appActions'
+// import { connect } from 'react-redux'
+// import {login, populateCharacters, populateGames} from './actions/appActions'
 import Homepage from './components/Homepage'
 import GameContainer from './components/GameContainer'
 import GameForm from './components/GameForm'
 import CharacterContainer from './components/CharacterContainer'
 import CharacterForm from './components/CharacterForm'
-import ShowCharacter from './components/Character'
 import Profile from './components/Profile';
 import Logout from './components/Logout'
 import NoMatch from './components/NoMatch'
@@ -18,6 +17,10 @@ import './App.css';
 
 
 class App extends Component {
+
+  // componentDidMount(){
+  //   this.props.populateCharacters()
+  // }
 
   render(){
   return (
@@ -38,10 +41,12 @@ class App extends Component {
             <Route exact path='/profile'component={Profile}/> 
             <Route exact path='/logout' component={Logout}/>
             <Route exact path='/new-character' component={CharacterForm}/>
-            <Route exact path='/show-character' component={ShowCharacter}/>
             <Route exact path='/new-game' component={GameForm}/>
             <Route path="/login" render={()=> (<Redirect to='/home'/>)}/>
             <Route exact path="/" render={()=> (<Redirect to='/home'/>)}/>
+            {/* {this.props.characters.map(character => {
+              return <Route exact path={`character/${character.name}`} render={()=> <Character char={character}/>}/>
+            })} */}
             <Route component={NoMatch}/>
           </Switch>
         </div>
@@ -57,17 +62,18 @@ class App extends Component {
   );
   }
 }
-const mapStateToProps = state => {
-  return {
-    userExists: state.loginReducer.userExists,
-    characters: state.populateCharactersReducer.characters
-  }
-}
-const mapDispatchToProps = dispatch => {
-  return {
-    login: () => dispatch(login()),
-    populateCharacters: () => dispatch(populateCharacters()),
-    populateGames: () => dispatch(populateGames())
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+// const mapStateToProps = state => {
+//   return {
+//     userExists: state.loginReducer.userExists,
+//     characters: state.populateCharactersReducer.characters
+//   }
+// }
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     login: () => dispatch(login()),
+//     populateCharacters: () => dispatch(populateCharacters()),
+//     populateGames: () => dispatch(populateGames())
+//   }
+// }
+export default App;
+// connect(mapStateToProps, mapDispatchToProps)
