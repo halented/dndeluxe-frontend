@@ -36,7 +36,14 @@ class CharacterForm extends Component {
             body: JSON.stringify(postData)
         })
         .then(response=>response.json())
-        alert("Character Saved! Navigate to the character's homepage to view.")
+        .then(json => {
+            if (json.id){
+                window.location.href='/characters'
+            }
+            else {
+                alert(json.errors)
+            }
+        })
     }
 
     parseDetails= () => {

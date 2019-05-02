@@ -246,6 +246,7 @@ justify-content: center
   overflow: scroll;
   font-weight: bold;
   font-size: small;
+  align-self: center
 }
 
 #charBtn {
@@ -289,7 +290,7 @@ justify-content: center
   grid-row: 2
 } 
 
-#emptyChar {
+.empty {
   grid-column: 5 span;
   grid-row: 2
 }
@@ -340,6 +341,15 @@ li {
   border-style: groove;
   font-weight: bold;
   margin: 5px;
+}
+
+.charName {
+  cursor: pointer;
+  color: black;
+  align-self: center;
+}
+.charName:hover {
+  color: rgb(154, 34, 34);
 }
 
 #subBtn {
@@ -492,4 +502,11 @@ ul {
   cursor: pointer;
   grid-column: 3;
   max-height: 50%
+}
+
+#fourOh {
+  grid-column: 5 span;
+  justify-self: center;
+  border: 70px solid rgb(154, 34, 34);
+  border-radius: 70px;
 }

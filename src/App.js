@@ -7,6 +7,7 @@ import GameContainer from './components/GameContainer'
 import GameForm from './components/GameForm'
 import CharacterContainer from './components/CharacterContainer'
 import CharacterForm from './components/CharacterForm'
+import ShowCharacter from './components/Character'
 import Profile from './components/Profile';
 import Logout from './components/Logout'
 import NoMatch from './components/NoMatch'
@@ -17,14 +18,6 @@ import './App.css';
 
 
 class App extends Component {
-
-  hydrater = () => {
-    if(localStorage.getItem('token')) {
-      this.props.login()
-      this.props.populateCharacters()
-      this.props.populateGames()
-    }
-  }
 
   render(){
   return (
@@ -45,6 +38,7 @@ class App extends Component {
             <Route exact path='/profile'component={Profile}/> 
             <Route exact path='/logout' component={Logout}/>
             <Route exact path='/new-character' component={CharacterForm}/>
+            <Route exact path='/show-character' component={ShowCharacter}/>
             <Route exact path='/new-game' component={GameForm}/>
             <Route path="/login" render={()=> (<Redirect to='/home'/>)}/>
             <Route exact path="/" render={()=> (<Redirect to='/home'/>)}/>

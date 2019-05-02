@@ -6,18 +6,19 @@ class Logout extends Component {
     out = () => {
         localStorage.clear() 
         this.props.duxLogout()
+        .then(window.location.href='/login')
     }
     ok = () => {
         alert("ok")
     }
     render() {
-    return(
-        <div className="pageBoxes">
-            <h1 id='b1'>Truly logout tho?</h1>
-            <h3 id='b2' onClick={this.out}>yep.</h3>
-            <h3 id='b3' onClick={this.ok}>no!</h3>
-        </div>
-    )
+        return(
+            <div className="pageBoxes">
+                <h1 id='b1'>Truly logout tho?</h1>
+                <h3 id='b2' onClick={this.out}>yep.</h3>
+                <h3 id='b3' onClick={this.ok}>no!</h3>
+            </div>
+        )
     }
 }
 const mapDispatchToProps = dispatch => {

@@ -36,7 +36,7 @@ class Login extends Component {
             localStorage.setItem('avatar', json.user_info.avatar)
             localStorage.setItem('username', json.user_info.username)
             localStorage.setItem('userID', json.user_info.id)
-            localStorage.setItem('bio', json.user_info.bio)
+            localStorage.setItem('bio', 'Click "Edit profile" to add a bio.')
             this.props.login()
             this.props.populateCharacters()
             this.props.populateGames()

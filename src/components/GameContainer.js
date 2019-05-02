@@ -23,7 +23,7 @@ class GameContainer extends Component {
                 </ul>
                 </>
                 :
-                <div>No games yet. Click the button below to make one!</div>
+                <div className='empty'>No games yet. Click the button below to make one!</div>
                 }
                 <NavLink to='/new-game' id='newCharBtn'>
                 <button >Make a new game! =></button>

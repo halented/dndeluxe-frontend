@@ -52,9 +52,9 @@ class GameForm extends Component {
         .then(response => response.json())
         .then(json => {
             if(json.game.id)
-            {alert("Game saved!")}
+            {window.location.href='/games'}
             else
-            alert("Game failed to post. Please try again.")
+            alert(json.errors)
         })
     }
 

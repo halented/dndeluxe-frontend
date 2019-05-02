@@ -19,7 +19,7 @@ class CharacterContainer extends Component {
                 {this.props.characters.map(char=> {
                     return (
                     <>
-                    <li>{char.name}</li>
+                    <NavLink to='/show-character' className='charName'><li>{char.name}</li></NavLink>
                     <img  className='charListItem'alt="character profile pic" src={char.image}></img>
                     </>
                     )
@@ -27,7 +27,7 @@ class CharacterContainer extends Component {
                 </ul>
                 </>
                 :
-                <div id='emptyChar'>No characters yet. Click the button below to make one!</div>
+                <div className='empty'>No characters yet. Click the button below to make one!</div>
                 }
                 <NavLink to='/new-character' id='newCharBtn'>
                 <button>Make a new Character! =></button>
