@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import Character from './Character'
-import { NavLink, Route } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { populateCharacters, populateGames } from '../actions/appActions'
-
+ 
 class Homepage extends Component {
 
     componentDidMount(){
@@ -46,10 +45,6 @@ class Homepage extends Component {
                 <NavLink to='/profile' id='profieBtn'>
                 <button>Full Profile</button>
                 </NavLink>
-                {this.props.characters.map(character => {
-                    return <Route exact path={`character/${character.name}`} render={()=> <Character char={character}/>}/>
-                        })
-                }
             </div>
         );
     }

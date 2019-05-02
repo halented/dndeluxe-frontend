@@ -10,7 +10,8 @@ const loginReducer = (state = initialState, action) => {
                 userExists: true
             }
         case "LOGOUT":
-            return {...state,
+            return {
+                ...state,
                 userExists: false,
             }
         default:

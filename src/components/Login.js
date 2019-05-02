@@ -12,7 +12,6 @@ class Login extends Component {
             showSignUp: false
         }
     }
-    
 
     signUp = (ev)=> {
         ev.preventDefault()
@@ -71,7 +70,8 @@ class Login extends Component {
                 localStorage.setItem('bio', json.user_info.bio)
                 this.props.login()
                 this.props.populateCharacters()
-                this.props.populateGames()}
+                this.props.populateGames()
+            }
                 else {
                     alert("No user found! Please sign up :)")
                 }
@@ -84,31 +84,31 @@ class Login extends Component {
                 { this.state.showSignUp ?
                 <>
                     <form onSubmit={this.signUp} id='loginForm'>
-                        <p className='a1'>Enter a username and password, and a link to your avatar to sign up:</p>
-                        <p className='a2'><input placeholder='username' name='username' className='loginputs' value={this.state.username} onChange={this.onChange}></input></p>
-                        <p className='a3'><input placeholder='password' name='password' className='loginputs' type='password' value={this.state.password} onChange={this.onChange}></input></p>
-                        <p className='a4'><input placeholder='avatar URL' name='avatar' className='loginputs' type='text' value={this.state.avatar} onChange={this.onChange}></input></p>
+                        <b className='a1'>New user info:</b>
+                        <input  placeholder='username' name='username' className='loginputs a2' value={this.state.username} onChange={this.onChange}></input>
+                        <input placeholder='password' name='password' className='loginputs a3' type='password' value={this.state.password} onChange={this.onChange}></input>
+                        <input placeholder='avatar URL' name='avatar' className='loginputs a4' type='text' value={this.state.avatar} onChange={this.onChange}></input>
                         <button className='btns'>submit</button>
                     </form>
-                    <button onClick={this.showForm} className='btns'>Go Back</button>
+                    <button onClick={this.showForm} className='btns'>go back</button>
                 </>
                 :
                     <>
                         <form onSubmit={this.loginLocal} id='loginForm'>
-                            <p className='a1'>Enter a username and password to login:</p>
-                            <p className='a2'><input placeholder='username' 
+                            <p className='a1'>Enter a username and password:</p>
+                            <input placeholder='username' 
                                     name='username' 
-                                    className='loginputs' 
+                                    className='loginputs a2' 
                                     value={this.state.username} 
                                     onChange={this.onChange}>
-                                    </input></p>
-                            <p className='a3'><input placeholder='password' 
+                                    </input>
+                            <input placeholder='password' 
                                     name='password' 
-                                    className='loginputs' 
+                                    className=' loginputs a3' 
                                     type='password' 
                                     value={this.state.password} 
                                     onChange={this.onChange}>
-                                    </input></p>
+                                    </input>
                             <button className='a4'>submit</button>
                         </form>
                         <p className='a5'>Or <button onClick={this.showForm} id='signupBtn'>click here</button> to signup!</p>

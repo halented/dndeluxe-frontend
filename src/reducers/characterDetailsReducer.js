@@ -21,7 +21,8 @@ const initialState = {
 function characterDetailsReducer(state = initialState, action){
     switch(action.type) {
         case "ADD_DETAILS":
-            return {...state,
+            return {
+                ...state,
                 name: action.payload.name,
                 race: action.payload.race,
                 alignment: action.payload.alignment,

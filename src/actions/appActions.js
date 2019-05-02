@@ -13,7 +13,6 @@ export const duxLogout = () => {
 }
 
 export const populateGames = () => {
-    console.log("here in populate games")
     return dispatch => {
         fetch(`http://localhost:3000/user_games`, 
         {headers: {

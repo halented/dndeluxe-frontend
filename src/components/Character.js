@@ -3,15 +3,11 @@ import { connect } from 'react-redux'
 import { fetchCharacterDetails } from '../actions/characterActions'
 
 class Character extends Component {
-
-    componentDidMount(){
-        fetchCharacterDetails()
-    }
-    
     render() {
         return (
             <div className='pageBoxes'>
-                lol ive done nothign
+                {this.props.char.name}
+                <p>{console.log(this.props.alignment)}</p>
             </div>
         );
     }
@@ -36,12 +32,15 @@ const mapStateToProps = state => {
         armor_class: state.characterDetailsReducer.armor_class,
         speed: state.characterDetailsReducer.speed,
         hitPoints: state.characterDetailsReducer.hitPoints,
-        inspiration: state.characterDetailsReducer.inspiration
+        inspiration: state.characterDetailsReducer.inspiration,
+        // characters: state.populateCharactersReducer.characters
     }
 }
+
 const mapDispatchToProps = dispatch => {
     return {
-        fetchCharacterDetails: () => dispatch(fetchCharacterDetails())
+        fetchCharacterDetails: (id) => dispatch(fetchCharacterDetails(id))
     }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(Character);
