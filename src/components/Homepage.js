@@ -22,7 +22,7 @@ class Homepage extends Component {
                             <h2 id='homeCharName'>{this.props.characters[this.props.characters.length-1].name}!</h2>
                         </>
                     :
-                    <h3>No characters yet. Click the link below to begin!</h3>
+                    <h3 className='noneYet'>No characters yet. Click the link below to begin!</h3>
                 }
                 </div>
                 <NavLink to='/characters' id='charBtn'>
@@ -35,7 +35,7 @@ class Homepage extends Component {
                             <div id='homeGame'>{this.props.games[this.props.games.length-1].game.group_name}, being held at {this.props.games[this.props.games.length-1].game.location}!</div>
                         </>
                     :
-                    <h3>No games yet. Click the link below to begin!</h3>
+                    <h3 className='noneYet'>No games yet. Click the link below to begin!</h3>
                 }
                 </div>
                 <NavLink to='/games' id='gamesBtn'>

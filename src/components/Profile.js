@@ -75,6 +75,7 @@ class Profile extends Component {
                   <>
                     <img id='avatarProfilePage' src={this.state.avatar} alt="A Pic of You!"></img>
                     <h2 id='greet2'>Lookin' good, {this.state.username}!</h2>
+                    <h2 id='bioGreet'>Personal Bio:</h2>
                     <p className='bio'>{this.state.bio}</p>
                     <div className='deets'>You have {this.props.characters.length} character(s) currently playing in {this.props.games.length} game(s). Impressive!</div>
                     <button id='editProBtn' onClick={this.handleClick}>Edit profile</button>
