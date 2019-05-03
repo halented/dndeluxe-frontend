@@ -1,13 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { fetchCharacterDetails } from '../actions/characterActions'
+import { populateCharacters } from '../actions/appActions'
 
 class Character extends Component {
+
+    componentDidMount(){
+        this.props.fetchCharacterDetails(this.props.char.id)
+        this.props.populateCharacters()
+    }
+
     render() {
         return (
             <div className='pageBoxes'>
-                {this.props.char.name}
-                <p>{console.log(this.props.alignment)}</p>
+                {this.props.characterDetails.race}
+                {this.props.characterDetails.alignment}
+                {this.props.characterDetails.image}
+                {this.props.characterDetails.details}
+                {this.props.characterDetails.level}
+                {this.props.characterDetails.characterClass}
+                {this.props.characterDetails.strength}
+                {this.props.characterDetails.dexterity}
+                {this.props.characterDetails.constitution}
+                {this.props.characterDetails.intelligence}
+                {this.props.characterDetails.wisdom}
+                {this.props.characterDetails.charisma}
+                {this.props.characterDetails.initiative}
+                {this.props.characterDetails.armor_class}
+                {this.props.characterDetails.speed}
+                {this.props.characterDetails.hitPoints}
+                <br></br>
+                {this.props.characterDetails.inspiration}
             </div>
         );
     }
@@ -15,31 +38,14 @@ class Character extends Component {
 
 const mapStateToProps = state => {
     return {
-        name: state.characterDetailsReducer.name,
-        race: state.characterDetailsReducer.race,
-        alignment: state.characterDetailsReducer.alignment,
-        image: state.characterDetailsReducer.image,
-        details: state.characterDetailsReducer.details,
-        level: state.characterDetailsReducer.level,
-        characterClass: state.characterDetailsReducer.characterClass,
-        strength: state.characterDetailsReducer.strength,
-        dexterity: state.characterDetailsReducer.dexterity,
-        constitution: state.characterDetailsReducer.constitution,
-        intelligence: state.characterDetailsReducer.intelligence,
-        wisdom: state.characterDetailsReducer.wisdom,
-        charisma: state.characterDetailsReducer.charisma,
-        initiative: state.characterDetailsReducer.initiative,
-        armor_class: state.characterDetailsReducer.armor_class,
-        speed: state.characterDetailsReducer.speed,
-        hitPoints: state.characterDetailsReducer.hitPoints,
-        inspiration: state.characterDetailsReducer.inspiration,
-        // characters: state.populateCharactersReducer.characters
+        characterDetails: state.characterDetailsReducer.characterDetails
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchCharacterDetails: (id) => dispatch(fetchCharacterDetails(id))
+        fetchCharacterDetails: (id) => dispatch(fetchCharacterDetails(id)),
+        populateCharacters: () => dispatch(populateCharacters())
     }
 }
 

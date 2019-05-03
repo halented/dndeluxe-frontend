@@ -19,6 +19,12 @@ import './App.css';
 
 class App extends Component {
 
+  componentDidMount = () => {
+    if(this.props.userExists || localStorage.getItem('token')){
+    this.props.populateCharacters()
+    }
+  }
+
   render(){
   return (
     <Router>
@@ -28,8 +34,8 @@ class App extends Component {
           <img src={miniLogo} alt="logooo" className="minilogo"></img>
           <NavLink to="/home" className='navItem'>Home</NavLink>
           <NavLink to='/games' className='navItem'>Games</NavLink>
-          <NavLink to='characters' className='navItem'>Characters</NavLink>
-          <NavLink to='profile' className='navItem'>Profile</NavLink>
+          <NavLink to='/characters' className='navItem'>Characters</NavLink>
+          <NavLink to='/profile' className='navItem'>Profile</NavLink>
           <NavLink to='/logout' className='navItem'>Logout</NavLink>
           <Switch>
             <Route exact path='/home' component={Homepage}/>
