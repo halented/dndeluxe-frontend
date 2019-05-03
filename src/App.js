@@ -31,12 +31,14 @@ class App extends Component {
       <>
         {this.props.userExists || localStorage.getItem('token') ?
         <div className="loggedIn">
-          <img src={miniLogo} alt="logooo" className="minilogo"></img>
-          <NavLink to="/home" className='navItem'>Home</NavLink>
-          <NavLink to='/games' className='navItem'>Games</NavLink>
-          <NavLink to='/characters' className='navItem'>Characters</NavLink>
-          <NavLink to='/profile' className='navItem'>Profile</NavLink>
-          <NavLink to='/logout' className='navItem'>Logout</NavLink>
+          <div className='navBar'>
+            <img src={miniLogo} alt="logooo" className="minilogo"></img>
+            <NavLink to="/home" className='navItem'>Home</NavLink>
+            <NavLink to='/games' className='navItem'>Games</NavLink>
+            <NavLink to='/characters' className='navItem'>Characters</NavLink>
+            <NavLink to='/profile' className='navItem'>Profile</NavLink>
+            <NavLink to='/logout' className='navItem'>Logout</NavLink>
+          </div>
           <Switch>
             <Route exact path='/home' component={Homepage}/>
             <Route exact path='/games' component={GameContainer}/>
