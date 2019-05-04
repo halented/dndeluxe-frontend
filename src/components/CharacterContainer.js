@@ -11,8 +11,9 @@ class CharacterContainer extends Component {
     componentDidMount(){
         this.props.populateCharacters()
     }
-    
+
     delete = (charID) => {
+        if(window.confirm("Permanently remove this character from your profile? This action cannot be reversed."))
         fetch(`http://localhost:3000/users/${localStorage.getItem('userID')}/characters/${charID}`, {
             method: 'DELETE',
             headers: {
@@ -40,7 +41,7 @@ class CharacterContainer extends Component {
                 {this.props.characters[0] ?
                 <>
                 <h2 className='topGreet'>Your Characters:</h2>
-                <ul id='charBox'>
+                <ul className='charBox'>
                     {this.props.characters.map(char=> {
                             return (
                             <div className='singleCharBox'>

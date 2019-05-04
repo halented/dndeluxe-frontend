@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 
 class CharacterForm extends Component {
     state = {
@@ -75,7 +76,7 @@ class CharacterForm extends Component {
         return (
             <form className='characterForm' onSubmit={this.postChar}>
                 <br/>
-                <input placeholder='Character Name' id='nameField' name="name"></input>
+                <input placeholder='Character Name' className='nameField' name="name" value={this.props.characterDetails.name} ></input>
                 <input name="level" type="number" placeholder='Lvl' className='formBox lvl' max='20' min='1'></input>
                 <label className='lbl insp'>Inspired? </label>
                 <input id="inspiration" type='checkbox' name='inspiration' value='inspiration'></input>
@@ -130,11 +131,17 @@ class CharacterForm extends Component {
                     <li className="statItem">
                     <input type='number' min='-5' className='statBox'max='20' name='charisma'></input><label className='lbl'>  Charisma</label></li>
                 </ul>
-                <textarea type='textarea' name='details' id='description' placeholder='Additional character details (personality traits, ideals, bonds, notes, items...)'></textarea>
+                <div id='pointAllocation'></div>
+                <textarea type='textarea' name='details' className='description' placeholder='Additional character details (personality traits, ideals, bonds, notes, items...)'></textarea>
                 <input type='text' placeholder='image URL' className='url' name='image'></input>
             </form>
         );
     }
 }
 
-export default CharacterForm;
+const mapStateToProps = state => {
+    return {
+        characterDetails: state.characterDetailsReducer.characterDetails
+    }
+}
+export default connect(mapStateToProps)(CharacterForm);

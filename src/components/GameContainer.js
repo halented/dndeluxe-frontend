@@ -14,7 +14,7 @@ class GameContainer extends Component {
                 {this.props.games.length>0 ?
                 <>
                 <h2 className='topGreet'>Your Games:</h2>
-                <ul id='charBox'>
+                <ul className='charBox'>
                 {this.props.games.map(gameObj=> {
                     return (
                     <li className='oneGame'>{gameObj.game.group_name}, being held at {gameObj.game.location}.</li>

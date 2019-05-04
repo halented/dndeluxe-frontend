@@ -32,7 +32,7 @@ class App extends Component {
         {this.props.userExists || localStorage.getItem('token') ?
         <div className="loggedIn">
           <div className='navBar'>
-            <img src={miniLogo} alt="logooo" className="minilogo"></img>
+            <NavLink to="/home"><img src={miniLogo} alt="logooo" className="minilogo"></img></NavLink>
             <NavLink to="/home" className='navItem' id='n1'>Home</NavLink>
             <NavLink to='/games' className='navItem' id='n2'>Games</NavLink>
             <NavLink to='/characters' className='navItem' id='n3'>Characters</NavLink>
@@ -46,6 +46,7 @@ class App extends Component {
             <Route exact path='/profile'component={Profile}/> 
             <Route exact path='/logout' component={Logout}/>
             <Route exact path='/new-character' component={CharacterForm}/>
+            <Route exact path='/edit-character' component={CharacterForm}/>
               {this.props.characters.map(character => {          
                 return <Route key={character.id} exact path={`/character/${character.id}`} 
                               render={(props)=> (

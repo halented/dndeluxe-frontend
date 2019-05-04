@@ -9,7 +9,6 @@ export const fetchCharacterDetails = (charID) => {
         })
         .then(response=> response.json())
         .then(json => {
-            console.log("inside the action, json:", json)
             dispatch({type: "ADD_DETAILS", payload: json})
         })
     }
