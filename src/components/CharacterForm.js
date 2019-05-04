@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import toaster from 'toasted-notes';
 
 class CharacterForm extends Component {
     state = {
         classes: [],
-        races: []
+        races: [],
+        remaining: 27,
+        strength: 8,
+        dexterity: 8,
+        constitution: 8,
+        intelligence: 8,
+        wisdom: 8,
+        charisma: 8
     }
 
     componentDidMount() {
@@ -70,12 +79,22 @@ class CharacterForm extends Component {
         data['game_id'] = "nil"
         return data
     }
+    statChanger = (ev) => {
+        let total= (parseInt(document.getElementsByName('strength')[0].value)+parseInt(document.getElementsByName('dexterity')[0].value)+parseInt(document.getElementsByName('constitution')[0].value)+parseInt(document.getElementsByName('intelligence')[0].value)+parseInt(document.getElementsByName('wisdom')[0].value)+parseInt(document.getElementsByName('wisdom')[0].value))
+        if(total <= 75){
+            let newRem = (75-total)
+            this.setState({[ev.target.name]: parseInt(ev.target.value), remaining: newRem})
+        }
+        else {
+            toaster.notify("No points remaining")
+        }
 
+    }
     render() {
         return (
             <form className='characterForm' onSubmit={this.postChar}>
                 <br/>
-                <input placeholder='Character Name' id='nameField' name="name"></input>
+                <input placeholder='Character Name' className='nameField' name="name" value={this.props.characterDetails.name} ></input>
                 <input name="level" type="number" placeholder='Lvl' className='formBox lvl' max='20' min='1'></input>
                 <label className='lbl insp'>Inspired? </label>
                 <input id="inspiration" type='checkbox' name='inspiration' value='inspiration'></input>
@@ -112,29 +131,35 @@ class CharacterForm extends Component {
                 <button type='submit' id='subBtn'>Save!</button>
                 <div className='singlets'>
                     <input type='number' min='-5' max='20' name='initiative' className='formBox' placeholder='Init'></input>
-                    <input type='number' min='-5' max='20' name='armorClass' className='formBox' placeholder='AC'></input>
+                    <input type='number' min='-5' max='50' name='armorClass' className='formBox' placeholder='AC'></input>
                     <input type='number' min='0' max='100' name='speed' className='formBox' placeholder='Spd'></input>
-                    <input type='number' min='-5' max='100' name='hitPoints' className='formBox' placeholder='HP'></input>
+                    <input type='number' min='-5' max='200' name='hitPoints' className='formBox' placeholder='HP'></input>
                 </div>
                 <ul className='statblock'>
                     <li className="statItem">
-                    <input type='number' min='-5' className='statBox'max='20' name='strength'></input><label className='lbl'>  Strength</label></li>
+                    <input type='number' min='8' value={this.state.strength} className='statBox'max='20' name='strength' onChange={this.statChanger}></input><label className='lbl'>  Strength</label></li>
                     <li className="statItem">
-                    <input type='number' min='-5' className='statBox'max='20' name='dexterity'></input><label className='lbl'>  Dexterity</label></li>
+                    <input type='number' min='8' value={this.state.dexterity} className='statBox'max='20' name='dexterity' onChange={this.statChanger}></input><label className='lbl'>  Dexterity</label></li>
                     <li className="statItem">
-                    <input type='number' min='-5' className='statBox'max='20' name='constitution'></input><label className='lbl'>  Constitution</label></li>
+                    <input type='number' min='8' value={this.state.constitution} className='statBox'max='20' name='constitution' onChange={this.statChanger}></input><label className='lbl'>  Constitution</label></li>
                     <li className="statItem">
-                    <input type='number' min='-5' className='statBox'max='20' name='intelligence'></input><label className='lbl'>  Intelligence</label></li>
+                    <input type='number' min='8' value={this.state.intelligence} className='statBox'max='20' name='intelligence' onChange={this.statChanger}></input><label className='lbl'>  Intelligence</label></li>
                     <li className="statItem">
-                    <input type='number' min='-5' className='statBox'max='20' name='wisdom'></input><label className='lbl'>  Wisdom</label></li>
+                    <input type='number' min='8' value={this.state.wisdom} className='statBox'max='20' name='wisdom' onChange={this.statChanger}></input><label className='lbl'>  Wisdom</label></li>
                     <li className="statItem">
-                    <input type='number' min='-5' className='statBox'max='20' name='charisma'></input><label className='lbl'>  Charisma</label></li>
+                    <input type='number' min='8' value={this.state.charisma} className='statBox'max='20' name='charisma' onChange={this.statChanger}></input><label className='lbl'>  Charisma</label></li>
                 </ul>
-                <textarea type='textarea' name='details' id='description' placeholder='Additional character details (personality traits, ideals, bonds, notes, items...)'></textarea>
+                <div id='pointAllocation'>Remaining Points: {this.state.remaining}</div>
+                <textarea type='textarea' name='details' className='description' placeholder='Additional character details (personality traits, ideals, bonds, notes, items...)'></textarea>
                 <input type='text' placeholder='image URL' className='url' name='image'></input>
             </form>
         );
     }
 }
 
-export default CharacterForm;
+const mapStateToProps = state => {
+    return {
+        characterDetails: state.characterDetailsReducer.characterDetails
+    }
+}
+export default connect(mapStateToProps)(CharacterForm);

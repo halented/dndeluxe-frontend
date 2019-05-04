@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {duxLogout} from '../actions/appActions'
+import logo from '../logo.png'
 
 class Logout extends Component {
     out = () => {
@@ -17,6 +18,7 @@ class Logout extends Component {
                 <h1 id='b1'>Truly logout tho?</h1>
                 <h3 id='b2' onClick={this.out}>yep.</h3>
                 <h3 id='b3' onClick={this.ok}>no!</h3>
+                <img src={logo} alt="DnDeluxe Logo" id='profLogo'></img>
             </div>
         )
     }

@@ -111,7 +111,7 @@ class Login extends Component {
                                     </input>
                             <button className='a4'>submit</button>
                         </form>
-                        <p className='a5'>Or <button onClick={this.showForm} id='signupBtn'>click here</button> to signup!</p>
+                        <button onClick={this.showForm} className='btns'>Or sign up!</button>
                     </>
                 }
             </div>

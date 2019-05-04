@@ -17,12 +17,12 @@ class Homepage extends Component {
                 <div id='homeChars'>
                 {this.props.characters[0] ? 
                         <>
-                            <h3>Most recent character:</h3>
+                            <h3 id='recentCharHeader'>Most recent character:</h3>
                             <img src={this.props.characters[this.props.characters.length-1].image} alt='most recent character' id='homepageChar'></img>
-                            <h2>{this.props.characters[this.props.characters.length-1].name}!</h2>
+                            <h2 id='homeCharName'>{this.props.characters[this.props.characters.length-1].name}!</h2>
                         </>
                     :
-                    <h3>No characters yet. Click the link below to begin!</h3>
+                    <h3 className='noneYet'>No characters yet. Click the link below to begin!</h3>
                 }
                 </div>
                 <NavLink to='/characters' id='charBtn'>
@@ -31,11 +31,11 @@ class Homepage extends Component {
                 <div id="gameBox">
                 {this.props.games[0] ? 
                         <>
-                            <h3>Most recent game:</h3>
-                            <div className='oneGame'>{this.props.games[this.props.games.length-1].game.group_name}, being held at {this.props.games[this.props.games.length-1].game.location}!</div>
+                            <h3 id='recentGameHeader'>Most recent game:</h3>
+                            <div id='homeGame'>{this.props.games[this.props.games.length-1].game.group_name}, being held at {this.props.games[this.props.games.length-1].game.location}!</div>
                         </>
                     :
-                    <h3>No games yet. Click the link below to begin!</h3>
+                    <h3 className='noneYet'>No games yet. Click the link below to begin!</h3>
                 }
                 </div>
                 <NavLink to='/games' id='gamesBtn'>
