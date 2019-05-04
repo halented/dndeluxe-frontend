@@ -46,7 +46,7 @@ class CharacterContainer extends Component {
                             return (
                             <div className='singleCharBox'>
                                 <NavLink to={`character/${char.id}`} className='charName' ><li>{char.name}</li></NavLink>
-                                <NavLink to={`character/${char.id}`}><img   className='charListItem' alt="character profile pic" src={char.image}></img></NavLink>
+                                <img className='charListItem' alt="character profile pic" src={char.image}></img>
                                 <img src={trash} onClick={()=>this.delete(char.id)} alt='delete button' className='deleteBtn'></img>
                             </div>
                             )
