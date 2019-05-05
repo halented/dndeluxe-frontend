@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 class SpellSearch extends Component {
     state= {
-        spells: []
+        spells: [],
+        urls: []
     }
  
     componentDidMount(){
@@ -21,19 +22,29 @@ class SpellSearch extends Component {
                 urls.push(spell.url)
             }
         })
+        this.setState({urls: "tango"})
+        console.log("bueno")
     }
 
     render() {
         return (
             <div className='pageBoxes'>
-            <form className='searchForm' onSubmit={this.searchSubmit}>
-                <label id='slbl'>Enter spell name or keyword:</label>
-                <input placeholder="spell name or keyword" id='search'></input>
-                <button type='submit' id='searchBtn'>submit</button>
-            </form>
-            <div id='resultBox'>
-
-            </div>
+                <form className='searchForm' onSubmit={this.searchSubmit}>
+                    <label id='slbl'>Enter spell name or keyword:</label>
+                    <input placeholder="spell name or keyword" id='search'></input>
+                    <button type='submit' id='searchBtn'>submit</button>
+                </form>
+                <div id='resultBox'>
+                    {this.state.spells.length > 0 ?
+                        <ul id='spellList'>
+                            {this.state.spells.map(spell=> {
+                                return <li><a href={spell.url}>{spell.name}</a></li>
+                            })}
+                        </ul>
+                    :
+                    null
+                    }
+                </div>
             </div>
         );
     }
