@@ -1,22 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import toaster from 'toasted-notes';
 
 class CharacterForm extends Component {
     state = {
-        remaining: 27,
-        strength: 8,
-        dexterity: 8,
-        constitution: 8,
-        intelligence: 8,
-        wisdom: 8,
-        charisma: 8
+        name: this.props.characterDetails.name,
+        level: this.props.characterDetails.level,
+        initiative: this.props.characterDetails.initiative,
+        armor_class: this.props.characterDetails.armor_class,
+        speed: this.props.characterDetails.speed,
+        hit_points: this.props.characterDetails.hit_points,
+        strength: this.props.characterDetails.strength,
+        dexterity: this.props.characterDetails.dexterity,
+        constitution: this.props.characterDetails.constitution,
+        intelligence: this.props.characterDetails.intelligence,
+        image: this.props.characterDetails.image,
+        details: this.props.characterDetails.details,
+        wisdom: this.props.characterDetails.wisdom,
+        charisma: this.props.characterDetails.charisma
     }
 
     postChanges = (ev) => {
         ev.preventDefault()
         let charData = this.parseDetails()
         let postData = {character: charData}
-        fetch(`http://localhost:3000/users/${localStorage.getItem('userID')}/characters`, {
+        fetch(`http://localhost:3000/users/${localStorage.getItem('userID')}/characters/${this.props.characterDetails.id}`, {
             method: 'PATCH',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -28,7 +36,8 @@ class CharacterForm extends Component {
         .then(response=>response.json())
         .then(json => {
             if (json.id){
-                window.location.href='/characters'
+                window.location.href=`/characters`
+                toaster.notify('character updated!')
             }
             else {
                 alert(json.errors)
@@ -39,12 +48,9 @@ class CharacterForm extends Component {
     parseDetails= () => {
         let data = {}
         data['name'] = document.getElementsByName('name')[0].value
-        data['race'] = document.getElementsByName('race')[0].value
-        data['alignment'] = document.getElementsByName('alignment')[0].value
         data['image'] = document.getElementsByName('image')[0].value
         data['details'] = document.getElementsByName('details')[0].value
         data['level'] = document.getElementsByName('level')[0].value
-        data['character_class'] = document.getElementsByName('characterClass')[0].value
         data['strength'] = document.getElementsByName('strength')[0].value
         data['dexterity'] = document.getElementsByName('dexterity')[0].value
         data['constitution'] = document.getElementsByName('constitution')[0].value
@@ -61,21 +67,25 @@ class CharacterForm extends Component {
         return data
     }
 
+    statChanger = (ev) => {
+        this.setState({[ev.target.name]: ev.target.value})
+    }
+
     render() {
         return (
-            <form className='characterForm' onSubmit={this.postChar}>
+            <form className='characterForm' onSubmit={this.postChanges}>
                 <br/>
-                <input placeholder='Character Name' className='nameField' name="name" onChange={console.log("deets:", this.props.characterDetails)} ></input>
-                <input name="level" type="number" placeholder='Lvl' className='formBox lvl' max='20' min='1'></input>
+                <input placeholder='Character Name' className='nameField' name="name" value={this.state.name}  onChange={this.statChanger}></input>
+                <input name="level" type="number" placeholder='Lvl' className='formBox lvl' max='20' min='1' value={this.state.level}  onChange={this.statChanger}></input>
                 <label className='lbl insp'>Inspired? </label>
                 <input id="inspiration" type='checkbox' name='inspiration' value='inspiration'></input>
-                <p id='descMini'>A Level {this.props.characterDetails.level} {this.props.characterDetails.alignment} {this.props.characterDetails.race} {this.props.characterDetails.character_class}.</p>
+                <p id='descMini'>A {this.props.characterDetails.alignment} {this.props.characterDetails.race} {this.props.characterDetails.character_class}.</p>
                 <button type='submit' id='subBtn'>Save!</button>
                 <div className='singlets'>
-                    <input type='number' min='-5' max='20' name='initiative' className='formBox' placeholder='Init'></input>
-                    <input type='number' min='-5' max='50' name='armorClass' className='formBox' placeholder='AC'></input>
-                    <input type='number' min='0' max='100' name='speed' className='formBox' placeholder='Spd'></input>
-                    <input type='number' min='-5' max='200' name='hitPoints' className='formBox' placeholder='HP'></input>
+                    <input type='number' min='-5' max='20' name='initiative' className='formBox' placeholder='Init' value={this.state.initiative}  onChange={this.statChanger}></input>
+                    <input type='number' min='-5' max='50' name='armorClass' className='formBox' placeholder='AC' value={this.state.armor_class}  onChange={this.statChanger}></input>
+                    <input type='number' min='0' max='100' name='speed' className='formBox' placeholder='Spd' value={this.state.speed}  onChange={this.statChanger}></input>
+                    <input type='number' min='-5' max='200' name='hitPoints' className='formBox' placeholder='HP' value={this.state.hit_points}  onChange={this.statChanger}></input>
                 </div>
                 <ul className='statblock'>
                     <li className="statItem">
@@ -91,8 +101,8 @@ class CharacterForm extends Component {
                     <li className="statItem">
                     <input type='number' min='8' value={this.state.charisma} className='statBox'max='20' name='charisma' onChange={this.statChanger}></input><label className='lbl'>  Charisma</label></li>
                 </ul>
-                <textarea type='textarea' name='details' className='description' placeholder='Additional character details (personality traits, ideals, bonds, notes, items...)'></textarea>
-                <input type='text' placeholder='image URL' className='url' name='image'></input>
+                <textarea type='textarea' name='details' className='description' placeholder='Additional character details (personality traits, ideals, bonds, notes, items...)' onChange={this.statChanger} value={this.state.details}></textarea>
+                <input type='text' placeholder='image URL' className='url' name='image' onChange={this.statChanger} value={this.state.image}></input>
             </form>
         );
     }
