@@ -7,7 +7,6 @@ class CharacterForm extends Component {
         classes: [],
         races: [],
         remaining: 27,
-        taken: 0,
         strength: 8,
         dexterity: 8,
         constitution: 8,
@@ -16,28 +15,12 @@ class CharacterForm extends Component {
         charisma: 8
     }
 
-    componentDidMount() {
-        fetch('http://www.dnd5eapi.co/api/classes')
-        .then(res=>res.json())
-        .then(json => {
-            this.setState({classes: json.results})
-        })
-        this.fetchRaces()
-    }
-    fetchRaces = () => {
-        fetch('http://www.dnd5eapi.co/api/races')
-        .then(res=>res.json())
-        .then(json => {
-            this.setState({races: json.results})
-        })
-    }
-
-    postChar = (ev) => {
+    postChanges = (ev) => {
         ev.preventDefault()
         let charData = this.parseDetails()
         let postData = {character: charData}
         fetch(`http://localhost:3000/users/${localStorage.getItem('userID')}/characters`, {
-            method: 'POST',
+            method: 'PATCH',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
                 "Content-Type": "application/json",
@@ -81,48 +64,16 @@ class CharacterForm extends Component {
         return data
     }
     statChanger = (ev) => {
-        let stat;
-        switch(ev.target.name){
-            case "strength":
-                stat = this.state.strength
-                break
-            case "dexterity":
-                stat = this.state.dexterity
-                break
-            case "constitution":
-                stat = this.state.constitution
-                break
-            case "intelligence":
-                stat = this.state.intelligence
-                break
-                case "wisdom":
-                stat = this.state.wisdom
-                break
-            case "charisma":
-                stat = this.state.charisma
-                break
-            default:
-                toaster.notify('no stat detected')
+        let total= (parseInt(document.getElementsByName('strength')[0].value)+parseInt(document.getElementsByName('dexterity')[0].value)+parseInt(document.getElementsByName('constitution')[0].value)+parseInt(document.getElementsByName('intelligence')[0].value)+parseInt(document.getElementsByName('wisdom')[0].value)+parseInt(document.getElementsByName('charisma')[0].value))
+        if(total <= 75){
+            let newRem = (75-total)
+            this.setState({[ev.target.name]: parseInt(ev.target.value), remaining: newRem})
+        }
+        else {
+            toaster.notify("No points remaining")
         }
 
-        if(parseInt(ev.target.value) > stat){
-            if(parseInt(ev.target.value) >= 14 && this.state.remaining >= 2)
-            this.setState({[ev.target.name]: parseInt(ev.target.value), remaining: this.state.remaining-2})
-            else if (parseInt(ev.target.value) < 14 && this.state.remaining >= 1){
-                this.setState({[ev.target.name]: parseInt(ev.target.value), remaining: this.state.remaining-1})
-            }
-        }
-        
-        else if (parseInt(ev.target.value) < stat) {
-            if(parseInt(ev.target.value) >= 14){
-                this.setState({[ev.target.name]: parseInt(ev.target.value), remaining: this.state.remaining+2})
-            }
-            else if (parseInt(ev.target.value) < 14){
-                this.setState({[ev.target.name]: parseInt(ev.target.value), remaining: this.state.remaining + 1})
-            }
-        }
     }
-    
     render() {
         return (
             <form className='characterForm' onSubmit={this.postChar}>
@@ -170,17 +121,17 @@ class CharacterForm extends Component {
                 </div>
                 <ul className='statblock'>
                     <li className="statItem">
-                    <input type='number' min='8' value={this.state.strength} className='statBox'max='15' name='strength' onChange={this.statChanger}></input><label className='lbl'>  Strength</label></li>
+                    <input type='number' min='8' value={this.state.strength} className='statBox'max='20' name='strength' onChange={this.statChanger}></input><label className='lbl'>  Strength</label></li>
                     <li className="statItem">
-                    <input type='number' min='8' value={this.state.dexterity} className='statBox'max='15' name='dexterity' onChange={this.statChanger}></input><label className='lbl'>  Dexterity</label></li>
+                    <input type='number' min='8' value={this.state.dexterity} className='statBox'max='20' name='dexterity' onChange={this.statChanger}></input><label className='lbl'>  Dexterity</label></li>
                     <li className="statItem">
-                    <input type='number' min='8' value={this.state.constitution} className='statBox'max='15' name='constitution' onChange={this.statChanger}></input><label className='lbl'>  Constitution</label></li>
+                    <input type='number' min='8' value={this.state.constitution} className='statBox'max='20' name='constitution' onChange={this.statChanger}></input><label className='lbl'>  Constitution</label></li>
                     <li className="statItem">
-                    <input type='number' min='8' value={this.state.intelligence} className='statBox'max='15' name='intelligence' onChange={this.statChanger}></input><label className='lbl'>  Intelligence</label></li>
+                    <input type='number' min='8' value={this.state.intelligence} className='statBox'max='20' name='intelligence' onChange={this.statChanger}></input><label className='lbl'>  Intelligence</label></li>
                     <li className="statItem">
-                    <input type='number' min='8' value={this.state.wisdom} className='statBox'max='15' name='wisdom' onChange={this.statChanger}></input><label className='lbl'>  Wisdom</label></li>
+                    <input type='number' min='8' value={this.state.wisdom} className='statBox'max='20' name='wisdom' onChange={this.statChanger}></input><label className='lbl'>  Wisdom</label></li>
                     <li className="statItem">
-                    <input type='number' min='8' value={this.state.charisma} className='statBox'max='15' name='charisma' onChange={this.statChanger}></input><label className='lbl'>  Charisma</label></li>
+                    <input type='number' min='8' value={this.state.charisma} className='statBox'max='20' name='charisma' onChange={this.statChanger}></input><label className='lbl'>  Charisma</label></li>
                 </ul>
                 <div id='pointAllocation'>Remaining Points: {this.state.remaining}</div>
                 <textarea type='textarea' name='details' className='description' placeholder='Additional character details (personality traits, ideals, bonds, notes, items...)'></textarea>

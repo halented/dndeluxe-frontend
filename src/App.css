@@ -427,7 +427,7 @@ li {
   cursor: pointer;
   color: black;
   display: flex;
-  justify-self: flex-start;
+  justify-self: center;
   align-self: center;
   font-weight: bold;
   margin: 10%;
