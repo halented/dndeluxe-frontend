@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import toaster from 'toasted-notes';
 
 class CharacterForm extends Component {
     state = {
-        classes: [],
-        races: [],
         remaining: 27,
         strength: 8,
         dexterity: 8,
@@ -63,55 +60,16 @@ class CharacterForm extends Component {
         data['game_id'] = "nil"
         return data
     }
-    statChanger = (ev) => {
-        let total= (parseInt(document.getElementsByName('strength')[0].value)+parseInt(document.getElementsByName('dexterity')[0].value)+parseInt(document.getElementsByName('constitution')[0].value)+parseInt(document.getElementsByName('intelligence')[0].value)+parseInt(document.getElementsByName('wisdom')[0].value)+parseInt(document.getElementsByName('charisma')[0].value))
-        if(total <= 75){
-            let newRem = (75-total)
-            this.setState({[ev.target.name]: parseInt(ev.target.value), remaining: newRem})
-        }
-        else {
-            toaster.notify("No points remaining")
-        }
 
-    }
     render() {
         return (
             <form className='characterForm' onSubmit={this.postChar}>
                 <br/>
-                <input placeholder='Character Name' className='nameField' name="name" ></input>
+                <input placeholder='Character Name' className='nameField' name="name" onChange={console.log("deets:", this.props.characterDetails)} ></input>
                 <input name="level" type="number" placeholder='Lvl' className='formBox lvl' max='20' min='1'></input>
                 <label className='lbl insp'>Inspired? </label>
                 <input id="inspiration" type='checkbox' name='inspiration' value='inspiration'></input>
-                <div className='race'>
-                    Race:
-                    <select name='race'>
-                        {this.state.races.map(race=> {
-                            return <option key={race.name}>{race.name}</option>
-                        })}
-                    </select>
-                </div>
-                <div className='classBox'>
-                    Class:
-                    <select name='characterClass'>
-                    {this.state.classes.map(c=> {
-                        return <option key={c.name}>{c.name}</option>
-                    })}
-                    </select>
-                </div>
-                <div className='alig'>
-                Alignment:
-                <select name='alignment'>
-                    <option>Chaotic Good</option>
-                    <option>Neutral Good</option>
-                    <option>Lawful Good</option>
-                    <option>Chaotic Neutral</option>
-                    <option>True Neutral</option>
-                    <option>Lawful Neutral</option>
-                    <option>Chaotic Evil</option>
-                    <option>Neutral Evil</option>
-                    <option>Lawful Evil</option>
-                </select>
-                </div>
+                <p id='descMini'>A Level {this.props.characterDetails.level} {this.props.characterDetails.alignment} {this.props.characterDetails.race} {this.props.characterDetails.character_class}.</p>
                 <button type='submit' id='subBtn'>Save!</button>
                 <div className='singlets'>
                     <input type='number' min='-5' max='20' name='initiative' className='formBox' placeholder='Init'></input>
@@ -133,7 +91,6 @@ class CharacterForm extends Component {
                     <li className="statItem">
                     <input type='number' min='8' value={this.state.charisma} className='statBox'max='20' name='charisma' onChange={this.statChanger}></input><label className='lbl'>  Charisma</label></li>
                 </ul>
-                <div id='pointAllocation'>Remaining Points: {this.state.remaining}</div>
                 <textarea type='textarea' name='details' className='description' placeholder='Additional character details (personality traits, ideals, bonds, notes, items...)'></textarea>
                 <input type='text' placeholder='image URL' className='url' name='image'></input>
             </form>

@@ -69,7 +69,7 @@ class Profile extends Component {
                         <button type='submit'>Save</button>
                         <button onClick={this.handleClick} id='backBtn'>Go back</button>
                     </form>
-                    <img src={logo} alt="DnDeluxe Logo" id='profLogo'></img>
+                    <img src={logo} alt="DnDeluxe Logo" className='profLogo'></img>
                   </>
                  :
                   <>

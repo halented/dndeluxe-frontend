@@ -18,7 +18,7 @@ class Logout extends Component {
                 <h1 id='b1'>Truly logout tho?</h1>
                 <h3 id='b2' onClick={this.out}>yep.</h3>
                 <h3 id='b3' onClick={this.ok}>no!</h3>
-                <img src={logo} alt="DnDeluxe Logo" id='profLogo'></img>
+                <img src={logo} alt="DnDeluxe Logo" className='profLogo'></img>
             </div>
         )
     }
