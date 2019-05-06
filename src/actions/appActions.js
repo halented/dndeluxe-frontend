@@ -50,3 +50,16 @@ export const populateCharacters = () => {
             }))
     }
 }
+
+export const populateSpells = () => {
+    return dispatch => {
+        fetch('http://www.dnd5eapi.co/api/spells')
+        .then(res=>res.json())
+        .then(json=> {
+            json.results.forEach(spell=> {
+                spell.id = json.results.indexOf(spell)
+            })
+            dispatch({type: 'ADDSPELLS', payload: json.results})
+        })
+    }
+}

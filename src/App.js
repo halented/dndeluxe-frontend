@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, NavLink, Switch, Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
-import { login, populateCharacters } from './actions/appActions';
+import { login, populateCharacters, populateSpells } from './actions/appActions';
 import Homepage from './components/Homepage';
 import GameContainer from './components/GameContainer';
 import GameForm from './components/GameForm';
@@ -11,6 +11,7 @@ import CharacterEdit from './components/CharacterEdit';
 import Character from './components/Character';
 import Profile from './components/Profile';
 import SpellSearch from './components/SpellSearch';
+import Spell from './components/Spell'
 import Logout from './components/Logout';
 import NoMatch from './components/NoMatch';
 import Login from './components/Login';
@@ -24,6 +25,7 @@ class App extends Component {
   componentDidMount = () => {
     if(this.props.userExists || localStorage.getItem('token')){
     this.props.populateCharacters()
+    this.props.populateSpells()
     }
   }
 
@@ -57,6 +59,13 @@ class App extends Component {
                                 )}/>
                     })
               }
+              {this.props.spells.map(spell => {    
+                return <Route key={spell.id} exact path={`/spell/${spell.id}`} 
+                              render={(props)=> (
+                                  <Spell {...props} spell={spell}/>
+                                )}/>
+                    })
+              }
             <Route exact path='/new-game' component={GameForm}/>
             <Route exact path='/spell-search'component={SpellSearch}/>
             <Route path="/login" render={()=> (<Redirect to='/home'/>)}/>
@@ -79,13 +88,15 @@ class App extends Component {
 const mapPropsToState = state => {
   return {
     userExists: state.loginReducer.userExists,
-    characters: state.populateCharactersReducer.characters
+    characters: state.populateCharactersReducer.characters,
+    spells: state.populateSpellsReducer.spells
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
     login: () => dispatch(login()),
-    populateCharacters: () => dispatch(populateCharacters())
+    populateCharacters: () => dispatch(populateCharacters()),
+    populateSpells: () => dispatch(populateSpells())
   }
 }
 export default connect(mapPropsToState, mapDispatchToProps)(App);

@@ -1,48 +1,45 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { populateSpells } from '../actions/appActions'
 
 class SpellSearch extends Component {
-    state= {
-        spells: [],
-        urls: []
+    state ={
+        filteredSpells: []
     }
- 
+    componentWillReceiveProps(){
+        this.setState({filteredSpells: this.props.spells})
+        //saves the spells from disappearing when you refresh
+    }
     componentDidMount(){
-        fetch('http://www.dnd5eapi.co/api/spells')
-        .then(res=>res.json())
-        .then(json=> {
-            this.setState({spells: json.results})
-        })
+        this.setState({filteredSpells: this.props.spells})
+        //saves the spells from disappearing when you click away from the comonent
     }
-    searchSubmit = (ev) => {
-        ev.preventDefault()
-        let term = document.getElementById('search').value
-        let urls = []
-        this.state.spells.forEach(spell=> {
-            if(spell.name.toLowerCase().includes(term)) {
-                urls.push(spell.url)
+    filter = (ev) => {
+        let tempList = []
+        this.props.spells.forEach(spell => {
+            if(spell.name.toLowerCase().includes(ev.target.value.toLowerCase())){
+                tempList.push(spell)
             }
         })
-        this.setState({urls: "tango"})
-        console.log("bueno")
+        this.setState({filteredSpells: tempList})
     }
 
     render() {
         return (
             <div className='pageBoxes'>
-                <form className='searchForm' onSubmit={this.searchSubmit}>
+                <div className='searchForm'>
                     <label id='slbl'>Enter spell name or keyword:</label>
-                    <input placeholder="spell name or keyword" id='search'></input>
-                    <button type='submit' id='searchBtn'>submit</button>
-                </form>
-                <div id='resultBox'>
-                    {this.state.spells.length > 0 ?
-                        <ul id='spellList'>
-                            {this.state.spells.map(spell=> {
-                                return <li><a href={spell.url}>{spell.name}</a></li>
+                    <input placeholder="spell name or keyword" id='search' onChange={this.filter}></input>
+                </div>
+                <div className='resultBox'>
+                        {this.state.filteredSpells.length > 0 ?
+                        <ul className='spellList'>
+                            {this.state.filteredSpells.map(spell=> {
+                                return <li><a href={`/spell/${spell.id}`}>{spell.name}</a></li>
                             })}
                         </ul>
                     :
-                    null
+                    <ul className='spellList'></ul>
                     }
                 </div>
             </div>
@@ -50,4 +47,15 @@ class SpellSearch extends Component {
     }
 }
 
-export default SpellSearch;
+const mapStateToProps = (state) => {
+    return {
+        spells: state.populateSpellsReducer.spells
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        populateSpells: ()=> dispatch(populateSpells())
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(SpellSearch);
