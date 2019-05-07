@@ -17,7 +17,7 @@ class CharacterForm extends Component {
     }
 
     componentDidMount() {
-        fetch('http://www.dnd5eapi.co/api/classes')
+        fetch('https://cors-anywhere.herokuapp.com/http://www.dnd5eapi.co/api/classes')
         .then(res=>res.json())
         .then(json => {
             this.setState({classes: json.results})
@@ -25,7 +25,7 @@ class CharacterForm extends Component {
         this.fetchRaces()
     }
     fetchRaces = () => {
-        fetch('http://www.dnd5eapi.co/api/races')
+        fetch('https://cors-anywhere.herokuapp.com/http://www.dnd5eapi.co/api/races')
         .then(res=>res.json())
         .then(json => {
             this.setState({races: json.results})
