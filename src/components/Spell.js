@@ -8,7 +8,7 @@ class Spell extends Component {
     }
     
     componentDidMount(){
-        fetch(`${this.props.spell.url}`)
+        fetch(`https://cors-anywhere.herokuapp.com/${this.props.spell.url}`)
         .then(response=> response.json())
         .then(json=> {
             console.log(json)
@@ -18,14 +18,11 @@ class Spell extends Component {
 
     animate = () => {
         let div = document.getElementById('spellDesc')
-        let topDiv = document.getElementById('more')
         if(div.className === 'spellDesc'){
             div.className = "full"
-            topDiv.className="blurd"
         }
         else {
             div.className = 'spellDesc'
-            topDiv.className = 'more'
         }
     }
     render() {
