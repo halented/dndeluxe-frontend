@@ -114,7 +114,7 @@ class CharacterForm extends Component {
         }
         
         else if (parseInt(ev.target.value) < stat) {
-            if(parseInt(ev.target.value) >= 14){
+            if(parseInt(ev.target.value) >= 13){
                 this.setState({[ev.target.name]: parseInt(ev.target.value), remaining: this.state.remaining+2})
             }
             else if (parseInt(ev.target.value) < 14){
