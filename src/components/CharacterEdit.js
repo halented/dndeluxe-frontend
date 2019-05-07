@@ -76,12 +76,6 @@ class CharacterForm extends Component {
         document.getElementById("inspiration").checked = !this.state.inspiration
     }
     componentDidMount() {
-        // if(this.state.inspiration) {
-        //     document.getElementById("inspiration").checked = this.state.inspiration
-        // }
-        // else {
-        //     document.getElementById("inspiration").checked = false
-        // }
         document.getElementById("inspiration").checked = this.state.inspiration
     }
 

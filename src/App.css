@@ -347,15 +347,34 @@ box-shadow: 4px 4px #594141;
   font-size: x-large
 }
 .allGameInputs {
-  grid-column: 8 span;
+  grid-column: 4/8;
   justify-self: center;
+  align-self: center;
   margin: 10px;
-  width: 50%;
+  width: 90%;
+  height: 50%;
   overflow:scroll;
 }
-#groupName {
-  grid-row: 2
+#groupName, .g1 {
+  grid-row: 2;
 } 
+#location, .g2 {
+grid-row: 3;
+}
+#details, .g3 {
+grid-row: 4;
+}
+.g1, .g2, .g3 {
+  grid-column: 1/4;
+  justify-self: flex-end;
+  max-height: 30%;
+  align-self: center;
+}
+#gameSubmit {
+grid-row: 5;
+grid-column: 8 span;
+max-width: 25%;
+}
 
 .empty {
   grid-column: 5 span;

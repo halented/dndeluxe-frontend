@@ -64,9 +64,12 @@ class GameForm extends Component {
             <>
                 <form className='characterForm' onSubmit={this.postGame}>
                     <label id='gameLabel'>Game details:</label>
+                    <label className='g1'>Name:</label>
                     <input type='text' name='groupName' id='groupName' className='allGameInputs' value={this.state.groupName} onChange={this.onChange} placeholder='Group or Campaign Name'></input>
-                    <input className='allGameInputs' type='text' name='location' id='location' value={this.state.location} onChange={this.onChange} placeholder='Meetup Location'></input>
-                    <textarea className='allGameInputs' type='textarea' name='details' id='details' value={this.state.details} onChange={this.onChange} placeholder='Additional Details'></textarea>
+                    <label className='g2'>Meetup location:</label>
+                    <input className='allGameInputs' type='text' name='location' id='location' value={this.state.location} onChange={this.onChange} placeholder='location'></input>
+                    <label className='g3'>Additional details:</label>
+                    <textarea className='allGameInputs' type='textarea' name='details' id='details' value={this.state.details} onChange={this.onChange} placeholder='details'></textarea>
                     <button className='allGameInputs'id='gameSubmit' stype='submit'>Submit</button>
                     <img src={logo} alt="DnDeluxe Logo" className='gameLogo'></img>
                 </form>
