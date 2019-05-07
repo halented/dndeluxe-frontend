@@ -15,7 +15,7 @@ class Login extends Component {
 
     signUp = (ev)=> {
         ev.preventDefault()
-        fetch('http://localhost:3000/users', {
+        fetch('https://dndluxe-backend.herokuapp.com/users', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -31,6 +31,7 @@ class Login extends Component {
         })
         .then(r => r.json())
         .then(json=> {
+            console.log(json)
             localStorage.setItem('token', json.jwt)
             localStorage.setItem('avatar', json.user_info.avatar)
             localStorage.setItem('username', json.user_info.username)
@@ -52,7 +53,7 @@ class Login extends Component {
 
     loginLocal=(ev)=>{
         ev.preventDefault()
-        fetch("http://localhost:3000/login", {
+        fetch("https://dndluxe-backend.herokuapp.com/login", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
