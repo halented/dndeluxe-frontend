@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, NavLink, Switch, Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
-import { login, populateCharacters, populateSpells } from './actions/appActions';
+import { login, populateCharacters, populateSpells, populateGames } from './actions/appActions';
 import Homepage from './components/Homepage';
 import GameContainer from './components/GameContainer';
 import GameForm from './components/GameForm';
+import Game from './components/Game'
 import CharacterContainer from './components/CharacterContainer';
 import CharacterForm from './components/CharacterForm';
 import CharacterEdit from './components/CharacterEdit';
@@ -26,6 +27,7 @@ class App extends Component {
     if(this.props.userExists || localStorage.getItem('token')){
     this.props.populateCharacters()
     this.props.populateSpells()
+    this.props.populateGames()
     }
   }
 
@@ -66,6 +68,13 @@ class App extends Component {
                                 )}/>
                     })
               }
+              {this.props.games.map(game => {          
+                return <Route key={game.id} exact path={`/game/${game.id}`} 
+                              render={(props)=> (
+                                  <Game {...props} game={game}/>
+                                )}/>
+                    })
+              }
             <Route exact path='/new-game' component={GameForm}/>
             <Route exact path='/spell-search'component={SpellSearch}/>
             <Route path="/login" render={()=> (<Redirect to='/home'/>)}/>
@@ -89,14 +98,16 @@ const mapPropsToState = state => {
   return {
     userExists: state.loginReducer.userExists,
     characters: state.populateCharactersReducer.characters,
-    spells: state.populateSpellsReducer.spells
+    spells: state.populateSpellsReducer.spells,
+    games: state.populateGamesReducer.games
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
     login: () => dispatch(login()),
     populateCharacters: () => dispatch(populateCharacters()),
-    populateSpells: () => dispatch(populateSpells())
+    populateSpells: () => dispatch(populateSpells()),
+    populateGames: () => dispatch(populateGames())
   }
 }
 export default connect(mapPropsToState, mapDispatchToProps)(App);

@@ -30,7 +30,6 @@ class GameForm extends Component {
         })
         .then(response=>response.json())
         .then(json=>{
-            console.log('posting actual game', json)
             localStorage.setItem('game', json)
             this.postUserGame(json)
         })
@@ -40,7 +39,6 @@ class GameForm extends Component {
         let postData = {}
         postData['user_id'] = localStorage.getItem('userID')
         postData['game_id'] = json.id
-        console.log("this is the postData you've made to create a usergame", postData)
         fetch(`https://dndluxe-backend.herokuapp.com/user_games`, {
             method: 'POST',
             headers: {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { populateGames } from '../actions/appActions'
 
@@ -17,7 +17,7 @@ class GameContainer extends Component {
                 <ul className='charBox'>
                 {this.props.games.map(gameObj=> {
                     return (
-                    <li className='oneGame'>{gameObj.game.group_name}, being held at {gameObj.game.location}.</li>
+                        <NavLink to={`game/${gameObj.id}`} className='oneGameLink'><li>{gameObj.game.group_name}, being held at {gameObj.game.location}.</li></NavLink>
                     )
                 })}
                 </ul>

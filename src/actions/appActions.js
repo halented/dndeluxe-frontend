@@ -26,6 +26,7 @@ export const populateGames = () => {
                         temp.push(game)
                     }
                 })
+                console.log(temp)
                 dispatch({type: "ADDGAMES", payload: temp})
             }
             )

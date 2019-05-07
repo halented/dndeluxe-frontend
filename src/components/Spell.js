@@ -11,7 +11,6 @@ class Spell extends Component {
         fetch(`https://cors-anywhere.herokuapp.com/${this.props.spell.url}`)
         .then(response=> response.json())
         .then(json=> {
-            console.log(json)
             this.setState({spell: json})
         })
     }
