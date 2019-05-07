@@ -16,7 +16,7 @@ class Character extends Component {
             <div className='characterForm'>
                 <h3 className='nameShow bord'>{this.props.characterDetails.name}</h3>
                 <img className='imgShow bord' src={this.props.characterDetails.image} alt="character avatar"></img>
-                <p id='descMini'>A Level {this.props.characterDetails.level} {this.props.characterDetails.alignment} {this.props.characterDetails.race} {this.props.characterDetails.character_class}.</p>
+                <p id='descMiniShow'>A Level {this.props.characterDetails.level} {this.props.characterDetails.alignment} {this.props.characterDetails.race} {this.props.characterDetails.character_class}.</p>
                 <p className='bord desc'>Description: {this.props.characterDetails.details}</p>
                 <ul className='singlets2 bord'>
                     <li className='lineItem'>Initiative: {this.props.characterDetails.initiative}</li>

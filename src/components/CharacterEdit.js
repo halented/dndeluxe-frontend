@@ -17,7 +17,8 @@ class CharacterForm extends Component {
         image: this.props.characterDetails.image,
         details: this.props.characterDetails.details,
         wisdom: this.props.characterDetails.wisdom,
-        charisma: this.props.characterDetails.charisma
+        charisma: this.props.characterDetails.charisma,
+        inspiration: this.props.characterDetails.inspiration
     }
 
     postChanges = (ev) => {
@@ -70,6 +71,19 @@ class CharacterForm extends Component {
     statChanger = (ev) => {
         this.setState({[ev.target.name]: ev.target.value})
     }
+    checkChanger = (ev) => {
+        this.setState({inspiration: !this.state.inspiration})
+        document.getElementById("inspiration").checked = !this.state.inspiration
+    }
+    componentDidMount() {
+        // if(this.state.inspiration) {
+        //     document.getElementById("inspiration").checked = this.state.inspiration
+        // }
+        // else {
+        //     document.getElementById("inspiration").checked = false
+        // }
+        document.getElementById("inspiration").checked = this.state.inspiration
+    }
 
     render() {
         return (
@@ -78,7 +92,7 @@ class CharacterForm extends Component {
                 <input placeholder='Character Name' className='nameField' name="name" value={this.state.name}  onChange={this.statChanger}></input>
                 <input name="level" type="number" placeholder='Lvl' className='formBox lvl' max='20' min='1' value={this.state.level}  onChange={this.statChanger}></input>
                 <label className='lbl insp'>Inspired? </label>
-                <input id="inspiration" type='checkbox' name='inspiration' value='inspiration'></input>
+                <input id="inspiration" type='checkbox' name='inspiration' onChange={this.checkChanger}></input>
                 <p id='descMini'>A {this.props.characterDetails.alignment} {this.props.characterDetails.race} {this.props.characterDetails.character_class}.</p>
                 <button type='submit' id='subBtn'>Save!</button>
                 <div className='singlets'>
