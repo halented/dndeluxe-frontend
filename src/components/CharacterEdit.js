@@ -59,17 +59,19 @@ class CharacterForm extends Component {
         data['wisdom'] = document.getElementsByName('wisdom')[0].value
         data['charisma'] = document.getElementsByName('charisma')[0].value
         data['initiative'] = document.getElementsByName('initiative')[0].value
-        data['armor_class'] = document.getElementsByName('armorClass')[0].value
+        data['armor_class'] = document.getElementsByName('armor_class')[0].value
         data['speed'] = document.getElementsByName('speed')[0].value
-        data['hit_points'] = document.getElementsByName('hitPoints')[0].value
+        data['hit_points'] = document.getElementsByName('hit_points')[0].value
         data['inspiration'] = document.getElementsByName('inspiration')[0].checked
         data['user_id'] = localStorage.getItem('userID')
         data['game_id'] = "nil"
+        console.log(data)
         return data
     }
 
     statChanger = (ev) => {
         this.setState({[ev.target.name]: ev.target.value})
+        console.log('in here', [ev.target.name], ev.target.value)
     }
     checkChanger = (ev) => {
         this.setState({inspiration: !this.state.inspiration})
@@ -91,9 +93,9 @@ class CharacterForm extends Component {
                 <button type='submit' id='subBtn'>Save!</button>
                 <div className='singlets'>
                     <input type='number' min='-5' max='20' name='initiative' className='formBox' placeholder='Init' value={this.state.initiative}  onChange={this.statChanger}></input>
-                    <input type='number' min='-5' max='50' name='armorClass' className='formBox' placeholder='AC' value={this.state.armor_class}  onChange={this.statChanger}></input>
+                    <input type='number' min='-5' max='50' name='armor_class' className='formBox' placeholder='AC' value={this.state.armor_class}  onChange={this.statChanger}></input>
                     <input type='number' min='0' max='100' name='speed' className='formBox' placeholder='Spd' value={this.state.speed}  onChange={this.statChanger}></input>
-                    <input type='number' min='-5' max='200' name='hitPoints' className='formBox' placeholder='HP' value={this.state.hit_points}  onChange={this.statChanger}></input>
+                    <input type='number' min='-5' max='200' name='hit_points' className='formBox' placeholder='HP' value={this.state.hit_points}  onChange={this.statChanger}></input>
                 </div>
                 <ul className='statblock'>
                     <li className="statItem">
