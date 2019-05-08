@@ -7,13 +7,13 @@ class CharacterForm extends Component {
         classes: [],
         races: [],
         remaining: 27,
-        taken: 0,
         strength: 8,
         dexterity: 8,
         constitution: 8,
         intelligence: 8,
         wisdom: 8,
-        charisma: 8
+        charisma: 8,
+        showPoints: false
     }
 
     componentDidMount() {
@@ -80,7 +80,7 @@ class CharacterForm extends Component {
         data['game_id'] = "nil"
         return data
     }
-    statChanger = (ev) => {
+    statChangerStrict = (ev) => {
         let stat;
         switch(ev.target.name){
             case "strength":
@@ -122,7 +122,10 @@ class CharacterForm extends Component {
             }
         }
     }
-    
+    changeShowPoints = () => {
+        this.setState({showPoints: !this.state.showPoints})
+    }
+
     render() {
         return (
             <form className='characterForm' onSubmit={this.postChar}>
@@ -168,21 +171,43 @@ class CharacterForm extends Component {
                     <input type='number' min='0' max='100' name='speed' className='formBox' placeholder='Spd'></input>
                     <input type='number' min='-5' max='200' name='hitPoints' className='formBox' placeholder='HP'></input>
                 </div>
-                <ul className='statblock'>
+                {this.state.showPoints ? 
+                <>
+                    <ul className='statblock'>
                     <li className="statItem">
-                    <input type='number' min='8' value={this.state.strength} className='statBox'max='15' name='strength' onChange={this.statChanger}></input><label className='lbl'>  Strength</label></li>
+                    <input type='number' min='8' value={this.state.strength} className='statBox'max='15' name='strength' onChange={this.statChangerStrict}></input><label className='lbl'>  Strength</label></li>
                     <li className="statItem">
-                    <input type='number' min='8' value={this.state.dexterity} className='statBox'max='15' name='dexterity' onChange={this.statChanger}></input><label className='lbl'>  Dexterity</label></li>
+                    <input type='number' min='8' value={this.state.dexterity} className='statBox'max='15' name='dexterity' onChange={this.statChangerStrict}></input><label className='lbl'>  Dexterity</label></li>
                     <li className="statItem">
-                    <input type='number' min='8' value={this.state.constitution} className='statBox'max='15' name='constitution' onChange={this.statChanger}></input><label className='lbl'>  Constitution</label></li>
+                    <input type='number' min='8' value={this.state.constitution} className='statBox'max='15' name='constitution' onChange={this.statChangerStrict}></input><label className='lbl'>  Constitution</label></li>
                     <li className="statItem">
-                    <input type='number' min='8' value={this.state.intelligence} className='statBox'max='15' name='intelligence' onChange={this.statChanger}></input><label className='lbl'>  Intelligence</label></li>
+                    <input type='number' min='8' value={this.state.intelligence} className='statBox'max='15' name='intelligence' onChange={this.statChangerStrict}></input><label className='lbl'>  Intelligence</label></li>
                     <li className="statItem">
-                    <input type='number' min='8' value={this.state.wisdom} className='statBox'max='15' name='wisdom' onChange={this.statChanger}></input><label className='lbl'>  Wisdom</label></li>
+                    <input type='number' min='8' value={this.state.wisdom} className='statBox'max='15' name='wisdom' onChange={this.statChangerStrict}></input><label className='lbl'>  Wisdom</label></li>
                     <li className="statItem">
-                    <input type='number' min='8' value={this.state.charisma} className='statBox'max='15' name='charisma' onChange={this.statChanger}></input><label className='lbl'>  Charisma</label></li>
-                </ul>
-                <div id='pointAllocation'>Remaining Points: {this.state.remaining}</div>
+                    <input type='number' min='8' value={this.state.charisma} className='statBox'max='15' name='charisma' onChange={this.statChangerStrict}></input><label className='lbl'>  Charisma</label></li>
+                    </ul>
+                    <div id='pointAllocation' onClick={this.changeShowPoints}>Remaining Points: {this.state.remaining}</div>
+                </>
+                :
+                <>
+                    <ul className='statblock'>
+                    <li className="statItem">
+                    <input type='number' min='0' placeholder='8' className='statBox'max='20' name='strength'></input><label className='lbl'>  Strength</label></li>
+                    <li className="statItem">
+                    <input type='number' min='0' placeholder='8' className='statBox'max='20' name='dexterity'></input><label className='lbl'>  Dexterity</label></li>
+                    <li className="statItem">
+                    <input type='number' min='0' placeholder='8' className='statBox'max='20' name='constitution'></input><label className='lbl'>  Constitution</label></li>
+                    <li className="statItem">
+                    <input type='number' min='0' placeholder='8' className='statBox'max='20' name='intelligence'></input><label className='lbl'>  Intelligence</label></li>
+                    <li className="statItem">
+                    <input type='number' min='0' placeholder='8' className='statBox'max='20' name='wisdom'></input><label className='lbl'>  Wisdom</label></li>
+                    <li className="statItem">
+                    <input type='number' min='0' placeholder='8' className='statBox'max='20' name='charisma'></input><label className='lbl'>  Charisma</label></li>
+                    </ul>
+                    <div id='pointAllocation' onClick={this.changeShowPoints}>Use point allocation system</div>
+                </>
+                }
                 <textarea type='textarea' name='details' className='description' placeholder='Additional character details (personality traits, ideals, bonds, notes, items...)'></textarea>
                 <input type='text' placeholder='image URL' className='url' name='image'></input>
             </form>

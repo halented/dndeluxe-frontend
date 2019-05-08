@@ -8,7 +8,7 @@ class Homepage extends Component {
     componentDidMount(){
         this.props.populateCharacters()
         this.props.populateGames()
-      }
+    }
 
     render() {
         return (
