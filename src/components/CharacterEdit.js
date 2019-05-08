@@ -65,13 +65,11 @@ class CharacterForm extends Component {
         data['inspiration'] = document.getElementsByName('inspiration')[0].checked
         data['user_id'] = localStorage.getItem('userID')
         data['game_id'] = "nil"
-        console.log(data)
         return data
     }
 
     statChanger = (ev) => {
         this.setState({[ev.target.name]: ev.target.value})
-        console.log('in here', [ev.target.name], ev.target.value)
     }
     checkChanger = (ev) => {
         this.setState({inspiration: !this.state.inspiration})
