@@ -10,10 +10,12 @@ class SpellSearch extends Component {
         this.setState({filteredSpells: this.props.spells})
         //saves the spells from disappearing when you refresh
     }
+
     componentDidMount(){
         this.setState({filteredSpells: this.props.spells})
         //saves the spells from disappearing when you click away from the comonent
     }
+
     filter = (ev) => {
         let tempList = []
         this.props.spells.forEach(spell => {

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux'
-import { populateCharacters, populateGames } from '../actions/appActions'
+import { populateCharacters, populateGames, populateSpells } from '../actions/appActions'
  
 class Homepage extends Component {
 
     componentDidMount(){
+        this.props.populateSpells()
         this.props.populateCharacters()
         this.props.populateGames()
     }
@@ -58,7 +59,8 @@ const mapPropsToState = (state) => {
 const mapDispatchToProps = dispatch => {
     return {
         populateCharacters: () => dispatch(populateCharacters()),
-        populateGames: () => dispatch(populateGames())
+        populateGames: () => dispatch(populateGames()),
+        populateSpells: () => dispatch(populateSpells())
     }
 }
 

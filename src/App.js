@@ -55,14 +55,14 @@ class App extends Component {
             <Route exact path='/new-character' component={CharacterForm}/>
             <Route exact path='/edit-character' component={CharacterEdit}/>
               {this.props.characters.map(character => {          
-                return <Route key={character.id} exact path={`/character/${character.id}`} 
+                return <Route key={character.id} path={`/character/${character.id}`} 
                               render={(props)=> (
                                   <Character {...props} char={character}/>
                                 )}/>
                     })
               }
               {this.props.spells.map(spell => {    
-                return <Route key={spell.id} exact path={`/spell/${spell.id}`} 
+                return <Route key={spell.id} path={`/spell/${spell.id}`} 
                               render={(props)=> (
                                   <Spell {...props} spell={spell}/>
                                 )}/>

@@ -325,6 +325,8 @@ box-shadow: 4px 4px #594141;
     border: 1px solid;
     background-color: #7D4E57;
     margin: 4px;
+    align-self: center;
+    padding: 10px;
  }
  .oneGameLink {
   border-radius: 5px;
