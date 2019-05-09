@@ -3,16 +3,22 @@ import logo from '../logo.png'
 
 class Spell extends Component {
     state = {
-        spell: '',
-        expanded: false
+        spell: ''
     }
     
     componentDidMount(){
         fetch(`https://cors-anywhere.herokuapp.com/${this.props.spell.url}`)
         .then(response=> response.json())
-        .then(json=> {
-            this.setState({spell: json})
+        .then(json=> this.sanitize(json))
+    }
+
+    sanitize = (json) => {
+        let temp = json
+        let newDesc = temp.desc.map(str => {
+            return str.replace(/â€™/g, "'")
         })
+        temp.desc = newDesc
+        this.setState({spell: temp})
     }
 
     animate = () => {

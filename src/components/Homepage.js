@@ -44,7 +44,7 @@ class Homepage extends Component {
                 </NavLink>
                 <img src={localStorage.getItem('avatar')} alt='avatar' className='avatar'></img>
                 <NavLink to='/profile' id='profieBtn'>
-                <button>Full Profile</button>
+                <button id='fullProfBtn'>Full Profile</button>
                 </NavLink>
             </div>
         );
