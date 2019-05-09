@@ -823,6 +823,7 @@ grid-template: 1fr 1fr / repeat(4, 25%)
   color: #d3cbcb;
   text-shadow: 3px 3px #2E0219;
 }
+
 #spellDesc, #spellDeets, #more, #blurd {
   grid-column: 8 span;
   justify-self: center;
@@ -846,6 +847,7 @@ top: 0px;
 }
 #spellDeets {
 grid-row: 4/6;
+width: 80%;
 }
 #more {
   grid-row: 6/9;

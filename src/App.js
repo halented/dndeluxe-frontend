@@ -15,6 +15,7 @@ import SpellSearch from './components/SpellSearch';
 import Spell from './components/Spell'
 import Logout from './components/Logout';
 import NoMatch from './components/NoMatch';
+import Loading from './components/Loading'
 import Login from './components/Login';
 import logo from './logo.png';
 import miniLogo from './miniLogo.png';
@@ -55,14 +56,14 @@ class App extends Component {
             <Route exact path='/new-character' component={CharacterForm}/>
             <Route exact path='/edit-character' component={CharacterEdit}/>
               {this.props.characters.map(character => {          
-                return <Route key={character.id} path={`/character/${character.id}`} 
+                return <Route key={character.id} exact path={`/character/${character.id}`} 
                               render={(props)=> (
                                   <Character {...props} char={character}/>
                                 )}/>
                     })
               }
               {this.props.spells.map(spell => {    
-                return <Route key={spell.id} path={`/spell/${spell.id}`} 
+                return <Route key={spell.id} exact path={`/spell/${spell.id}`} 
                               render={(props)=> (
                                   <Spell {...props} spell={spell}/>
                                 )}/>
@@ -75,6 +76,7 @@ class App extends Component {
                                 )}/>
                     })
               }
+            <Route path='/spell/*' component={Loading}/>
             <Route exact path='/new-game' component={GameForm}/>
             <Route exact path='/spell-search'component={SpellSearch}/>
             <Route path="/login" render={()=> (<Redirect to='/home'/>)}/>

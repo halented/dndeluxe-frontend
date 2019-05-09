@@ -15,7 +15,7 @@ class Spell extends Component {
     sanitize = (json) => {
         let temp = json
         let newDesc = temp.desc.map(str => {
-            return str.replace(/â€™/g, "'")
+            return str.replace(/â€™/g, `'`).replace(/â€œ/g, `"`).replace(/â€�/g, `"`)
         })
         temp.desc = newDesc
         this.setState({spell: temp})
@@ -30,6 +30,7 @@ class Spell extends Component {
             div.className = 'spellDesc'
         }
     }
+
     render() {
         return (
             <div className='singleSpell' id='top'>

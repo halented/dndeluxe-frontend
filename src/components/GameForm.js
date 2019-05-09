@@ -31,14 +31,16 @@ class GameForm extends Component {
         .then(response=>response.json())
         .then(json=>{
             localStorage.setItem('game', json)
-            this.postUserGame(json)
+            this.postUserGame(json, ev)
         })
     }
 
-    postUserGame = (json)=> {
+    postUserGame = (json, ev)=> {
+        ev.preventDefault(ev)
         let postData = {}
         postData['user_id'] = localStorage.getItem('userID')
         postData['game_id'] = json.id
+        console.log("tickers")
         fetch(`https://dndluxe-backend.herokuapp.com/user_games`, {
             method: 'POST',
             headers: {
@@ -68,7 +70,7 @@ class GameForm extends Component {
                     <input className='allGameInputs' type='text' name='location' id='location' value={this.state.location} onChange={this.onChange} placeholder='location'></input>
                     <label className='g3'>Additional details:</label>
                     <textarea className='allGameInputs' type='textarea' name='details' id='details' value={this.state.details} onChange={this.onChange} placeholder='details'></textarea>
-                    <button className='allGameInputs'id='gameSubmit' stype='submit'>Submit</button>
+                    <button className='allGameInputs'id='gameSubmit' type='submit'>Submit</button>
                     <img src={logo} alt="DnDeluxe Logo" className='gameLogo'></img>
                 </form>
             </>
