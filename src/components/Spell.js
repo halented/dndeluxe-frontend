@@ -35,7 +35,7 @@ class Spell extends Component {
         return (
             <div className='singleSpell' id='top'>
                 <h1 className='spName'>{this.state.spell.name}</h1>
-                <div id="spellDesc" className='spellDesc'onClick={this.animate}>{this.state.spell.desc}</div>
+                <div id="spellDesc" className='spellDesc'onDoubleClick={this.animate}>{this.state.spell.desc}</div>
                 <ul id='spellDeets'>
                     <li>Spell level: {this.state.spell.level}</li>
                     <li>Casting time: {this.state.spell.casting_time}</li>

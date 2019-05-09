@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from '../logo.png'
 
 class GameForm extends Component {
     state = {
@@ -14,6 +13,7 @@ class GameForm extends Component {
     
     postGame = (ev) => {
         ev.preventDefault()
+        console.log("inside post game")
         let postData = {}
         postData['group_name'] = document.getElementById('groupName').value
         postData['location'] = document.getElementById('location').value
@@ -61,7 +61,7 @@ class GameForm extends Component {
     render() {
         return (
             <>
-                <form className='characterForm' onSubmit={this.postGame}>
+                <form className='characterForm' onSubmit={(ev) => (this.postGame(ev))}>
                     <label id='gameLabel'>Game details:</label>
                     <label className='g1'>Name:</label>
                     <input type='text' name='groupName' id='groupName' className='allGameInputs' value={this.state.groupName} onChange={this.onChange} placeholder='Group or Campaign Name'></input>
@@ -70,7 +70,6 @@ class GameForm extends Component {
                     <label className='g3'>Additional details:</label>
                     <textarea className='allGameInputs' type='textarea' name='details' id='details' value={this.state.details} onChange={this.onChange} placeholder='details'></textarea>
                     <button className='allGameInputs'id='gameSubmit' type='submit'>Submit</button>
-                    <img src={logo} alt="DnDeluxe Logo" className='gameLogo'></img>
                 </form>
             </>
         );
