@@ -15,7 +15,7 @@ class Login extends Component {
 
     signUp = (ev)=> {
         ev.preventDefault()
-        fetch('https://dndluxe-backend.herokuapp.com/users', {
+        fetch('http://localhost:3000/users', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ class Login extends Component {
 
     loginLocal=(ev)=>{
         ev.preventDefault()
-        fetch("https://dndluxe-backend.herokuapp.com/login", {
+        fetch("http://localhost:3000/login", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

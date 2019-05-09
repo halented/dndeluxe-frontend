@@ -14,7 +14,7 @@ class CharacterContainer extends Component {
 
     delete = (charID) => {
         if(window.confirm("Permanently remove this character from your profile? This action cannot be reversed."))
-        fetch(`https://dndluxe-backend.herokuapp.com/users/${localStorage.getItem('userID')}/characters/${charID}`, {
+        fetch(`http://localhost:3000/users/${localStorage.getItem('userID')}/characters/${charID}`, {
             method: 'DELETE',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
