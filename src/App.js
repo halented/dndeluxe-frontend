@@ -77,6 +77,8 @@ class App extends Component {
                     })
               }
             <Route path='/spell/*' component={Loading}/>
+            <Route path='/game/*' component={Loading}/>
+            <Route path='/character/*' component={Loading}/>
             <Route exact path='/new-game' component={GameForm}/>
             <Route exact path='/spell-search'component={SpellSearch}/>
             <Route path="/login" render={()=> (<Redirect to='/home'/>)}/>

@@ -389,8 +389,9 @@ max-width: 25%;
 }
 .topGreetGame {
   grid-row: 1;
-  grid-column: 5 span;
+  grid-column: 1/4;
   justify-self: flex-start;
+  align-self: center;
   color: #2E0219;
   font-size: 200%;
   text-decoration: underline;
@@ -477,6 +478,24 @@ li {
   display: flex;
   justify-self: center;
   align-self: center;
+  cursor: pointer;
+}
+
+.deleteBtn2 {
+  grid-row: 1;
+  grid-column: 5;
+  max-width: 20px;
+  max-height: 20px;
+  cursor: pointer;
+  display: flex;
+  align-self: center;
+}
+#rem {
+  grid-row: 1;
+  grid-column: 4;
+  align-self: center;
+  margin: 5px;
+  justify-self: flex-end;
   cursor: pointer;
 }
 .charName {
