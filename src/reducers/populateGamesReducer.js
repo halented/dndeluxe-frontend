@@ -3,6 +3,7 @@ const initialState = {
 }
 
 const populateGamesReducer = (state = initialState, action) => { 
+    console.log(action.payload)
     switch(action.type){
         case "ADDGAMES":
             return {...state, games: action.payload}
