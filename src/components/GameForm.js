@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from '../logo.png'
 
 class GameForm extends Component {
     state = {
@@ -14,12 +13,14 @@ class GameForm extends Component {
     
     postGame = (ev) => {
         ev.preventDefault()
+        console.log("inside post game")
         let postData = {}
         postData['group_name'] = document.getElementById('groupName').value
         postData['location'] = document.getElementById('location').value
         postData['details'] = document.getElementById('details').value
         postData['user_id'] = localStorage.getItem('userID')
-        fetch(`https://dndluxe-backend.herokuapp.com/games`, {
+        console.log('postData:', postData)
+        fetch(`http://localhost:3000/games`, {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -40,7 +41,7 @@ class GameForm extends Component {
         let postData = {}
         postData['user_id'] = localStorage.getItem('userID')
         postData['game_id'] = json.id
-        fetch(`https://dndluxe-backend.herokuapp.com/user_games`, {
+        fetch(`http://localhost:3000/user_games`, {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -61,7 +62,7 @@ class GameForm extends Component {
     render() {
         return (
             <>
-                <form className='characterForm' onSubmit={this.postGame}>
+                <form className='characterForm' >
                     <label id='gameLabel'>Game details:</label>
                     <label className='g1'>Name:</label>
                     <input type='text' name='groupName' id='groupName' className='allGameInputs' value={this.state.groupName} onChange={this.onChange} placeholder='Group or Campaign Name'></input>
@@ -69,8 +70,7 @@ class GameForm extends Component {
                     <input className='allGameInputs' type='text' name='location' id='location' value={this.state.location} onChange={this.onChange} placeholder='location'></input>
                     <label className='g3'>Additional details:</label>
                     <textarea className='allGameInputs' type='textarea' name='details' id='details' value={this.state.details} onChange={this.onChange} placeholder='details'></textarea>
-                    <button className='allGameInputs'id='gameSubmit' type='submit'>Submit</button>
-                    <img src={logo} alt="DnDeluxe Logo" className='gameLogo'></img>
+                    <button id='gameSubmit' onClick={this.postGame}>Submit</button>
                 </form>
             </>
         );
@@ -78,3 +78,5 @@ class GameForm extends Component {
 }
 
 export default GameForm;
+
+//onSubmit={this.postGame()}
