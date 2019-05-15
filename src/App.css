@@ -383,9 +383,12 @@ grid-row: 4;
   align-self: center;
 }
 #gameSubmit {
-grid-row: 5;
-grid-column: 8 span;
-max-width: 25%;
+  grid-row: 5;
+  grid-column: 8 span;
+  max-width: 25%;
+  margin: 0px;
+  justify-self: center;
+  align-self: center;
 }
 .topGreetGame {
   grid-row: 1;

@@ -19,6 +19,7 @@ class GameForm extends Component {
         postData['location'] = document.getElementById('location').value
         postData['details'] = document.getElementById('details').value
         postData['user_id'] = localStorage.getItem('userID')
+        console.log('postData:', postData)
         fetch(`http://localhost:3000/games`, {
             method: 'POST',
             headers: {
@@ -61,7 +62,7 @@ class GameForm extends Component {
     render() {
         return (
             <>
-                <form className='characterForm' onSubmit={(ev) => (this.postGame(ev))}>
+                <form className='characterForm' >
                     <label id='gameLabel'>Game details:</label>
                     <label className='g1'>Name:</label>
                     <input type='text' name='groupName' id='groupName' className='allGameInputs' value={this.state.groupName} onChange={this.onChange} placeholder='Group or Campaign Name'></input>
@@ -69,7 +70,7 @@ class GameForm extends Component {
                     <input className='allGameInputs' type='text' name='location' id='location' value={this.state.location} onChange={this.onChange} placeholder='location'></input>
                     <label className='g3'>Additional details:</label>
                     <textarea className='allGameInputs' type='textarea' name='details' id='details' value={this.state.details} onChange={this.onChange} placeholder='details'></textarea>
-                    <button className='allGameInputs'id='gameSubmit' type='submit'>Submit</button>
+                    <button id='gameSubmit' onClick={this.postGame}>Submit</button>
                 </form>
             </>
         );
@@ -77,3 +78,5 @@ class GameForm extends Component {
 }
 
 export default GameForm;
+
+//onSubmit={this.postGame()}
