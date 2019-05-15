@@ -69,7 +69,7 @@ class App extends Component {
                                 )}/>
                     })
               }
-              {this.props.games.map(game => {          
+              {this.props.games.map(game => {         
                 return <Route key={game.id} exact path={`/game/${game.id}`} 
                               render={(props)=> (
                                   <Game {...props} game={game}/>

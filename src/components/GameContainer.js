@@ -8,6 +8,7 @@ class GameContainer extends Component {
     componentDidMount(){
         this.props.populateGames()
     }
+    
     render() {
         return (
             <div className='pageBoxes'>
