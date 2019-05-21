@@ -2,7 +2,7 @@
 
 export const fetchCharacterDetails = (charID) => { 
     return dispatch => {
-        fetch(`https://dndluxe-backend.herokuapp.com/users/${localStorage.getItem('userID')}/characters/${charID}`, {
+        fetch(`http://dndluxe-backend.herokuapp.com/users/${localStorage.getItem('userID')}/characters/${charID}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
