@@ -47,7 +47,7 @@ export function register(config) {
           );
         });
       } else {
-        // Is not http://localhost:3000. Just register service worker
+        // Is not http://dndluxe-backend.herokuapp.com/. Just register service worker
         registerValidSW(swUrl, config);
       }
     });
