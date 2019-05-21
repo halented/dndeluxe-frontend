@@ -14,7 +14,7 @@ export const duxLogout = () => {
 
 export const populateGames = () => {
     return dispatch => {
-        fetch(`http://dndluxe-backend.herokuapp.com/user_games`, 
+        fetch(`https://dndluxe-backend.herokuapp.com/user_games`, 
         {headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }})
@@ -34,7 +34,7 @@ export const populateGames = () => {
 
 export const populateCharacters = () => {
     return dispatch => {
-        fetch(`http://dndluxe-backend.herokuapp.com/users/${localStorage.getItem('userID')}/characters`, 
+        fetch(`https://dndluxe-backend.herokuapp.com/users/${localStorage.getItem('userID')}/characters`, 
         {headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }})

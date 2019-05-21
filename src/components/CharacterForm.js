@@ -36,7 +36,7 @@ class CharacterForm extends Component {
         ev.preventDefault()
         let charData = this.parseDetails()
         let postData = {character: charData}
-        fetch(`http://dndluxe-backend.herokuapp.com/users/${localStorage.getItem('userID')}/characters`, {
+        fetch(`https://dndluxe-backend.herokuapp.com/users/${localStorage.getItem('userID')}/characters`, {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
