@@ -41,7 +41,7 @@ class GameForm extends Component {
         let postData = {}
         postData['user_id'] = localStorage.getItem('userID')
         postData['game_id'] = json.id
-        fetch(`hhttps://dndluxe-backend.herokuapp.com/user_games`, {
+        fetch(`https://dndluxe-backend.herokuapp.com/user_games`, {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
