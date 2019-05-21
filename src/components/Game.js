@@ -6,7 +6,7 @@ class Game extends Component {
 
     delete = () => {
         if(window.confirm("Permanently remove this game? This action cannot be reversed."))
-        fetch(`https://dndluxe-backend.herokuapp.com/${this.props.game.id}`, {
+        fetch(`https://dndluxe-backend.herokuapp.com/user_games/${this.props.game.id}`, {
 
             method: 'DELETE',
             headers: {
