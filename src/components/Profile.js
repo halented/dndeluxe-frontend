@@ -25,7 +25,7 @@ class Profile extends Component {
     handleSubmit = (ev) => {
         ev.preventDefault()
         let postData = {user: {"username": this.state.username, "avatar": this.state.avatar, "bio": this.state.bio}}
-        fetch(`https://dndluxe-backend.herokuapp.com/users/${localStorage.getItem('userID')}`, {
+        fetch(`http://dndluxe-backend.herokuapp.com/users/${localStorage.getItem('userID')}`, {
             method: 'PATCH',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,

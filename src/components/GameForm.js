@@ -13,14 +13,13 @@ class GameForm extends Component {
     
     postGame = (ev) => {
         ev.preventDefault()
-        console.log("inside post game")
         let postData = {}
         postData['group_name'] = document.getElementById('groupName').value
         postData['location'] = document.getElementById('location').value
         postData['details'] = document.getElementById('details').value
         postData['user_id'] = localStorage.getItem('userID')
         console.log('postData:', postData)
-        fetch(`https://dndluxe-backend.herokuapp.com/games`, {
+        fetch(`http://dndluxe-backend.herokuapp.com/games`, {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -41,7 +40,7 @@ class GameForm extends Component {
         let postData = {}
         postData['user_id'] = localStorage.getItem('userID')
         postData['game_id'] = json.id
-        fetch(`https://dndluxe-backend.herokuapp.com/user_games`, {
+        fetch(`http://dndluxe-backend.herokuapp.com/user_games`, {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,

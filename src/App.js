@@ -68,8 +68,8 @@ class App extends Component {
                                   <Spell {...props} spell={spell}/>
                                 )}/>
                     })
-              }
-              {this.props.games.map(game => {         
+              }       
+              {this.props.games.map(game => {
                 return <Route key={game.game_id} exact path={`/game/${game.game_id}`} 
                               render={(props)=> (
                                   <Game {...props} game={game}/>
